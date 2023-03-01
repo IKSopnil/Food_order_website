@@ -54,16 +54,18 @@
                     </label>
                   </div>
 
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                
+                  <div class="d-grid mb-3">
+                    <button class="btn btn-outline-dark" type="submit">Register</button>
                   </div>
+                  <p class="mb-0  text-center">Have an account? <a href="login.php" class="text-primary fw-bold">Login</a></p>
 
                 </form>
 
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img style="margin-bottom:5%" src="image/kikaba.PNG"
+                <img style="margin-bottom:10%" src="image/kikaba.PNG"
                   class="img-fluid" alt="Sample image">
 
               </div>

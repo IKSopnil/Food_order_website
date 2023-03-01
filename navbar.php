@@ -46,7 +46,7 @@
             <div>
               <div>
                 <div class="my-4">
-                  <p class="nav-title-kikaba" style="font-family: Sofia, sans-serif;text-align: center;">Ki-Khaba</p>
+                  <p class="nav-title-kikaba"  style="font-family: Sofia, sans-serif;text-align: center;"><a href="index.php" style="text-decoration:none;color:white">Ki-Khaba</a></p>
                 </div>
 
               </div>
