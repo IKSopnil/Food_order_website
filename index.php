@@ -10,7 +10,7 @@ include "database_connect.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ki-khaba</title>
   <link rel="stylesheet" href="style.css">
-  
+
   <!--bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -70,35 +70,75 @@ include "database_connect.php";
         <li><a href="#Beverages" type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4">Beverages</a></li>
 
       </ul>
-      <p style="margin-top:1%";>Select your desired category.</p>
-      
+      <p style="margin-top:1%" ;>Select your desired category.</p>
+
     </div>
-    
+
 
   </section>
   <!--slide-->
   <section class="d-flex justify-content-center align-items-center">
 
-  <div  id="carouselExample" class="carousel slide">
-  
-  <div class="carousel-inner ">
-    
-    <?php include 'catagory/appetizer.php'; ?>
+    <div id="carouselExample" class="carousel slide">
 
-   
-    <?php include 'catagory/main_course.php'; ?>
+      <div class="carousel-inner ">
 
-  
-    <?php include 'catagory/dessert.php'; ?>
+        <?php include 'catagory/appetizer.php'; ?>
 
-    
-   
-    <?php include 'catagory/beverage.php'; ?>
 
-    
-  </div>
-  
-</div>
+        <?php include 'catagory/main_course.php'; ?>
+
+
+        <?php include 'catagory/dessert.php'; ?>
+
+
+
+        <?php include 'catagory/beverage.php'; ?>
+
+
+      </div>
+
+    </div>
+  </section>
+  <section>
+    <div>
+      <h1>Nearby Restaurants</h1>
+      <?php
+      // Your PHP code to retrieve restaurant data from a database or API
+      // ...
+
+      // Example data
+      $restaurants = array(
+        array("name" => "Restaurant 1", "lat" => 40.712776, "lng" => -74.005974),
+        array("name" => "Restaurant 2", "lat" => 40.721610, "lng" => -74.005960),
+        array("name" => "Restaurant 3", "lat" => 40.738000, "lng" => -73.987899)
+      );
+      ?>
+
+      <div id="map"></div>
+
+      <script>
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: new google.maps.LatLng(40.712776, -74.005974)
+          });
+
+          // Loop through restaurants and add markers to map
+          <?php foreach ($restaurants as $restaurant) { ?>
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(<?php echo $restaurant['lat']; ?>, <?php echo $restaurant['lng']; ?>),
+              map: map,
+              title: '<?php echo $restaurant['name']; ?>'
+            });
+          <?php } ?>
+        }
+      </script>
+
+      <div id="map-container-google-1" class="z-depth-1-half map-container embed-responsive " style="height: 380px">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1125.3826033761054!2d91.84027022922984!3d22.367915739279677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad2779ccfd10af%3A0xb30c47006338b1f2!2sA%20G%20Road%2C%20Chittagong!5e1!3m2!1sen!2sbd!4v1631614799100!5m2!1sen!2sbd" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
   </section>
 
 
@@ -115,20 +155,21 @@ include "database_connect.php";
 </button>
 
 </html>
+
+<!-- uparrow code -->
 <script>
   const scrollBtn = document.getElementById("scroll-to-top-btn");
 
-window.addEventListener("scroll", function() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    scrollBtn.classList.remove("d-none");
-  } else {
-    scrollBtn.classList.add("d-none");
-  }
-});
+  window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      scrollBtn.classList.remove("d-none");
+    } else {
+      scrollBtn.classList.add("d-none");
+    }
+  });
 
-scrollBtn.addEventListener("click", function() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-});
-
+  scrollBtn.addEventListener("click", function() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  });
 </script>
