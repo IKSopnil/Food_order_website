@@ -104,7 +104,7 @@ include "database_connect.php";
   <section>
     <div id="nearby_resturant" style="background-color: #F7F6F2;" class="d-flex justify-content-center align-items-center">
       <div class="row  p-5">
-        <h1 class="text-center " >Nearby Restaurants</h1>
+        <h1 class="text-center " style="padding-bottom: 4%;">Nearby Restaurants</h1>
         <div class="col justify-content-center align-items-center " style="text-align: center;">
 
 
@@ -114,7 +114,7 @@ include "database_connect.php";
           </div>
         </div>
         <div class="col nearby-restaurants d-flex justify-content-center align-items-center my-5" >
-          <p><span style="font-weight:bold">Nearby Restaurants:</span>  Bringing Local Flavor to Your Doorstep
+          <p class="px-4"><span style="font-weight:bold">Nearby Restaurants:</span>  Bringing Local Flavor to Your Doorstep
 
             Finding great food can be a real adventure, and it's no secret that people love to dine out at restaurants. But sometimes, you don't have the time or energy to venture too far from home. That's where nearby restaurants come in. These restaurants bring the local flavor right to your doorstep, giving you a taste of the area's best food without ever having to leave your neighborhood.
 
