@@ -5,7 +5,7 @@
 
 
     </div>
-    <div class="main_card">
+    <div class="main_card justify-content-center align-items-center">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100">

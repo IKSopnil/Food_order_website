@@ -11,7 +11,7 @@
 
   <body>
     <?php include "navbar.php"?>
-    <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #eee;">
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-md-8 col-lg-6">

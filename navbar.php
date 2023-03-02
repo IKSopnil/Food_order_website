@@ -28,7 +28,7 @@
             aria-label="Toggle navigation">
             <span   class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
               <li class="nav-item mx-2">
               <a target="_blank" href="https://www.facebook.com"> <i class="fa-brands fa-facebook" ></i></a>
@@ -50,20 +50,20 @@
                 </div>
 
               </div>
-              <div>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div >
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0 " >
                     <li class="nav-item mx-4">
                       <a class="nav-link active" aria-current="page" href="index.php" >Home</a>
                     </li>
                     <li class="nav-item mx-4">
-                      <a class="nav-link" href="#">Offer</a>
+                      <a class="nav-link" href="offer.php">Offer</a>
                     </li>
                     <li class="nav-item mx-4">
                       <a class="nav-link " href="about.php">About</a>
                     </li>
                     <li class="nav-item mx-4">
-                      <a class="nav-link " href="#">Cart</a>
+                      <a class="nav-link " href="cart.php">Cart</a>
                     </li>
                   </ul>
 

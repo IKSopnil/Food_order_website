@@ -36,7 +36,7 @@
   
           </div>
         </div>
-        <div class="col-md-4 col-sm-12 " style="">
+        <div class="col-md-4 col-sm-12 " >
           <h3 class="text-center">Contact Us</h3>
           <ul class="contact-info" >
             <li><i class="fa fa-map-marker"></i>123 Main Street,Chittagong</li>
@@ -44,7 +44,7 @@
             <li><i class="fa fa-envelope"></i>info@ki-khaba.com</li>
           </ul>
         </div>
-        <div class="col-md-4 col-sm-12 text-center" style="">
+        <div class="col-md-4 col-sm-12 text-center" >
           <h3 >Follow Us</h3>
           
            <div class="social-icons">

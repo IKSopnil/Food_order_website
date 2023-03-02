@@ -63,7 +63,7 @@ include "database_connect.php";
   <section class="menu">
     <h2>Our Menu</h2>
     <div class="menu-categories ">
-      <ul>
+      <ul class="nav nav-pills justify-content-center flex-wrap">
         <li><a href="#Appetizers" type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">Appetizers</a></li>
         <li><a href="#Main Courses" type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2">Main Courses</a></li>
         <li><a href="#Desserts" type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3">Desserts</a></li>
@@ -77,7 +77,7 @@ include "database_connect.php";
 
   </section>
   <!--slide-->
-  <section class="d-flex justify-content-center align-items-center">
+  <section style="background-color: #F7F6F2;" class="d-flex justify-content-center align-items-center">
 
     <div id="carouselExample" class="carousel slide">
 
@@ -97,53 +97,41 @@ include "database_connect.php";
 
 
       </div>
+      
 
     </div>
   </section>
   <section>
-    <div>
-      <h1>Nearby Restaurants</h1>
-      <?php
-      // Your PHP code to retrieve restaurant data from a database or API
-      // ...
+    <div id="nearby_resturant" style="background-color: #F7F6F2;" class="d-flex justify-content-center align-items-center">
+      <div class="row  p-5">
+        <h1 class="text-center " >Nearby Restaurants</h1>
+        <div class="col justify-content-center align-items-center " style="text-align: center;">
 
-      // Example data
-      $restaurants = array(
-        array("name" => "Restaurant 1", "lat" => 40.712776, "lng" => -74.005974),
-        array("name" => "Restaurant 2", "lat" => 40.721610, "lng" => -74.005960),
-        array("name" => "Restaurant 3", "lat" => 40.738000, "lng" => -73.987899)
-      );
-      ?>
 
-      <div id="map"></div>
 
-      <script>
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 12,
-            center: new google.maps.LatLng(40.712776, -74.005974)
-          });
+          <div id="map-container-google-1" class="z-depth-1-half map-container embed-responsive my-5" style="height: 100%">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7206.2920677960865!2d91.84081699891163!3d22.367914764615197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snearby%20restaurants!5e1!3m2!1sen!2sbd!4v1677661087116!5m2!1sen!2sbd" width="600" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="col nearby-restaurants d-flex justify-content-center align-items-center my-5" >
+          <p><span style="font-weight:bold">Nearby Restaurants:</span>  Bringing Local Flavor to Your Doorstep
 
-          // Loop through restaurants and add markers to map
-          <?php foreach ($restaurants as $restaurant) { ?>
-            var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(<?php echo $restaurant['lat']; ?>, <?php echo $restaurant['lng']; ?>),
-              map: map,
-              title: '<?php echo $restaurant['name']; ?>'
-            });
-          <?php } ?>
-        }
-      </script>
+            Finding great food can be a real adventure, and it's no secret that people love to dine out at restaurants. But sometimes, you don't have the time or energy to venture too far from home. That's where nearby restaurants come in. These restaurants bring the local flavor right to your doorstep, giving you a taste of the area's best food without ever having to leave your neighborhood.
 
-      <div id="map-container-google-1" class="z-depth-1-half map-container embed-responsive " style="height: 380px">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1125.3826033761054!2d91.84027022922984!3d22.367915739279677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad2779ccfd10af%3A0xb30c47006338b1f2!2sA%20G%20Road%2C%20Chittagong!5e1!3m2!1sen!2sbd!4v1631614799100!5m2!1sen!2sbd" frameborder="0" style="border:0" allowfullscreen></iframe>
+            One of the best things about nearby restaurants is that they offer a wide variety of cuisine types, from classic American fare to international dishes. Whether you're in the mood for pizza, sushi, or tacos, you're sure to find a nearby restaurant that offers exactly what you're looking for.
+
+            Beyond the cuisine, nearby restaurants also provide a convenient and comfortable dining experience. Many of these restaurants feature cozy, welcoming interiors, as well as outdoor seating areas for those warm summer nights. Plus, with the rise of food delivery services, you can enjoy your favorite nearby restaurant meals from the comfort of your own home.
+
+            Another advantage of nearby restaurants is that they often source their ingredients from local farms and suppliers, supporting the community and offering fresher, healthier food options. This farm-to-table approach not only benefits the local economy but also ensures that you are getting the best possible ingredients in your meals.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
 
 
-  er por nearby resturant er map takbe with some text
+
 </body>
 
 <section class="">
