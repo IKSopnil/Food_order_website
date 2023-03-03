@@ -20,7 +20,7 @@
 }
   </style>
 </head>
-<div class="carousel-item  active " id="Appetizers">
+<div class="carousel-item  active mb-4" id="Appetizers">
     <div class="text-center">
         <h3>Appetizers </h3>
         <p>This category can include a variety of finger foods, dips, spreads, and small bites.</p>
