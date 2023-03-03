@@ -13,6 +13,10 @@
 .card{
     width: 501px;
     height: 301px;
+    
+}
+.apitizer_card .row{
+    margin-top: 1%;
 }
   </style>
 </head>
@@ -22,7 +26,7 @@
         <p>This category can include a variety of finger foods, dips, spreads, and small bites.</p>
     </div>
     <div class="apitizer_card text-center   mx-auto">
-        <div class="row row-cols-1 row-cols-md-3 g-4 my-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4 ">
             <div class="col ">
                 <div class="card h-100">
                     <img src="https://images.pexels.com/photos/248413/pexels-photo-248413.jpeg?auto=compress&cs=tinysrgb&w=1600" class="card-img-top" alt="...">
