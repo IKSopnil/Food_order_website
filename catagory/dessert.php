@@ -1,3 +1,18 @@
+<style>
+    .card img{
+    width: 500px;
+    height: 300px;
+}
+.card{
+    width: 501px;
+    height: 301px;
+    
+}
+.desert_card .row{
+    margin-top: 1%;
+}
+  </style>
+
 <div class="carousel-item" id="Desserts">
   <div class="text-center">
     <h3>Desserts</h3>

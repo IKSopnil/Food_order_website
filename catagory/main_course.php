@@ -1,3 +1,17 @@
+<style>
+    .card img{
+    width: 500px;
+    height: 300px;
+}
+.card{
+    width: 501px;
+    height: 301px;
+    
+}
+.main_card  .row{
+    margin-top: 1%;
+}
+  </style>
 <div class="carousel-item " id="Main Courses">
     <div class="text-center">
         <h3>Main Courses</h3>
