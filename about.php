@@ -76,8 +76,9 @@
     </head>
     <body>
     <?php include 'navbar.php'?>
-      <div class="container-fluid">
-      <h3 class="text-center" style="color:white;margin-top:3%;">About Us</h3>
+    <h3 class="text-center" style="color:white;margin-top:3%;">About Us</h3>
+      <div class="container-fluid text-center justify-content-center text-align-center">
+      
           <div style="text-align: center;margin: 5%;">
            
                 <p class="container-fluid">At Foodie Delivery, we believe that good food can bring people together and make any day better. That's why we're passionate about delivering delicious meals right to your doorstep, whether you're in the mood for something healthy, indulgent, or anything in between.</p>

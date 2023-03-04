@@ -1,5 +1,5 @@
 <?php
-include "database_connect.php";
+include "db_connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,7 @@ include "database_connect.php";
       <div class="hero-content">
         <h1>Order Delicious Food Online</h1>
         <p style="margin-bottom:10%">Get your favorite food delivered straight to your doorstep</p>
-        <a href="" class="button ">Order Now</a>
+        <a href="cart.php" class="button ">Order Now</a>
       </div>
     </div>
   </section>
@@ -137,7 +137,9 @@ include "database_connect.php";
   </section>
 
 
-
+<section>
+  
+</section>
 
 </body>
 

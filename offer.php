@@ -15,14 +15,24 @@
     .apitizer_card .row {
         margin-top: 1%;
     }
+    #offer{
+        background-color: #eee;
+    }
+    #offer_c{
+        height: 20vh;
+        background-color: #fff;
+        border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+
+    }
 </style>
 
-<section class="mb-4 d-flex justify-content-center align-item-center ">
+<section class="pb-4 d-flex justify-content-center align-item-center " id="offer">
 
     <div class="apitizer_card text-center   mx-auto">
-        <div class="text-center my-4">
-            <h3>Appetizers </h3>
-            <p>This category can include a variety of finger foods, dips, spreads, and small bites.</p>
+        <div class="text-center my-4 justify-content-center mt-0 pt-5 " id="offer_c">
+            <h3>Offer </h3>
+            <p>Find the best deals and special offers</p>
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4 ">
             <div class="col ">
