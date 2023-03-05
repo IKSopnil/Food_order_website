@@ -60,11 +60,12 @@
                       <a class="nav-link" href="offer.php">Offer</a>
                     </li>
                     <li class="nav-item mx-4">
-                      <a class="nav-link " href="about.php">About</a>
-                    </li>
-                    <li class="nav-item mx-4">
                       <a class="nav-link " href="cart.php">Cart</a>
                     </li>
+                    <li class="nav-item mx-4">
+                      <a class="nav-link " href="about.php">About</a>
+                    </li>
+                    
                   </ul>
 
                 </div>
