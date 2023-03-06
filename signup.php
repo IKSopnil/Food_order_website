@@ -1,12 +1,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
- 
-  <?php include "navbar.php"?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<?php include "navbar.php" ?>
 <section class="vh-100" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
+        <div class="card text-black" style="border-radius: 10px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6  col-xl-5 order-2 order-lg-1">
@@ -54,7 +54,7 @@
                     </label>
                   </div>
 
-                
+
                   <div class="d-grid mb-3">
                     <button class="btn btn-outline-dark" type="submit">Register</button>
                   </div>
@@ -65,8 +65,7 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img style="margin-bottom:10%" src="image/kikaba.PNG"
-                  class="img-fluid" alt="Sample image">
+                <img style="margin-bottom:10%" src="image/kikaba.PNG" class="img-fluid" alt="Sample image">
 
               </div>
             </div>
@@ -75,6 +74,6 @@
       </div>
     </div>
   </div>
-  
+
 </section>
-<?php include "footer.php"?>
+<?php include "footer.php" ?>
