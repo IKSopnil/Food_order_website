@@ -97,9 +97,82 @@ include "db_connect.php";
 
 
       </div>
-     
+
 
     </div>
+  </section>
+  <!--database need to update ,working with apptze table for demo-->
+
+  <section class="Top_Rated  justify-content-center align-items-center">
+
+    <?php include "db_connect.php";
+
+
+    $sql = "SELECT * FROM appetizers";
+
+
+    $result = $conn->query($sql);
+
+    ?>
+    <div class="text-center">
+      <h2 class="mt-5">Top Rated Dishes</h2>
+      <p class="my-5">These top 10 items are ranked based on how much people like them.</p>
+    </div>
+
+    <div class="top_rated d-flex justify-content-center align-items-center" >
+      <div class="apitizer_card text-center   my-4">
+        <div class="apitizer_card text-center ">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner row align-items-center">
+              <?php
+              $count = 0;
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  if ($count % 4 == 0) {
+                    echo '<div class="carousel-item' . ($count == 0 ? ' active' : '') . '"><div class="row row-cols-md-4 row-cols-1">';
+                  }
+              ?>
+                  <div class="col d-flex justify-content-center align-item-center">
+                    <div class=" card h-100 text-center">
+                      <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                        <p class="card-text"><?php echo $row['description'] ?></p>
+                      </div>
+                      <div class="card-footer">
+                        <p style="font-weight:bold" class="justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
+                        <a href="#" class="btn btn-outline-dark d-flex justify-content-center">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+              <?php
+                  $count++;
+                  if ($count % 4 == 0) {
+                    echo '</div></div>';
+                  }
+                }
+                if ($count % 4 != 0) {
+                  echo '</div></div>';
+                }
+              }
+              ?>
+            </div>
+            <?php if ($result->num_rows > 4) { ?>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            <?php } ?>
+          </div>
+        </div>
+
+
+
+      </div>
   </section>
   <section>
     <div id="nearby_resturant" style="background-color: #F7F6F2;" class="d-flex justify-content-center align-items-center">
@@ -113,8 +186,8 @@ include "db_connect.php";
             <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7206.2920677960865!2d91.84081699891163!3d22.367914764615197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snearby%20restaurants!5e1!3m2!1sen!2sbd!4v1677661087116!5m2!1sen!2sbd" width="600" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
-        <div class="col nearby-restaurants d-flex justify-content-center align-items-center my-5" >
-          <p class="px-4"><span style="font-weight:bold">Nearby Restaurants:</span>  Bringing Local Flavor to Your Doorstep
+        <div class="col nearby-restaurants d-flex justify-content-center align-items-center my-5">
+          <p class="px-4"><span style="font-weight:bold">Nearby Restaurants:</span> Bringing Local Flavor to Your Doorstep
 
             Finding great food can be a real adventure, and it's no secret that people love to dine out at restaurants. But sometimes, you don't have the time or energy to venture too far from home. That's where nearby restaurants come in. These restaurants bring the local flavor right to your doorstep, giving you a taste of the area's best food without ever having to leave your neighborhood.
 
@@ -130,9 +203,6 @@ include "db_connect.php";
   </section>
 
 
-<section>
-  
-</section>
 
 </body>
 
