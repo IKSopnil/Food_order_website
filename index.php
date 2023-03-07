@@ -129,7 +129,7 @@ include "db_connect.php";
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                   if ($count % 4 == 0) {
-                    echo '<div class="carousel-item' . ($count == 0 ? ' active' : '') . '"><div class="row row-cols-md-4 row-cols-1">';
+                    echo '<div class="carousel-item active' . ($count == 0 ? ' active' : '') . '"><div class="row row-cols-md-4 row-cols-1">';
                   }
               ?>
                   <div class="col d-flex justify-content-center align-item-center">
