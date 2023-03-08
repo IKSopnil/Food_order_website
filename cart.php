@@ -26,12 +26,8 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-   
+
   }
-
- 
-
-  
 </style>
 <section class="pb-4   " id="cart">
 
@@ -41,41 +37,32 @@
 
       <p>Choose and order your items.</p>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-center align-item-center">
-      <div class="cart">
-        <h2 class="cart-header">Your Order</h2>
-        <div class="cart-items">
-          <div class="cart-item">
-            <img src="item1.jpg" alt="Item 1" class="cart-item-img">
-            <div class="cart-item-details">
-              <h3 class="cart-item-title">Item 1</h3>
-              <p class="cart-item-price">$10.99</p>
-              <div class="cart-item-quantity">
-                <label for="item1-quantity">Quantity:</label>
-                <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1">
-              </div>
-              <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
-            </div>
-          </div>
-          <div class="cart-item">
-            <img src="item2.jpg" alt="Item 2" class="cart-item-img">
-            <div class="cart-item-details">
-              <h3 class="cart-item-title">Item 2</h3>
-              <p class="cart-item-price">$8.99</p>
-              <div class="cart-item-quantity">
-                <label for="item2-quantity">Quantity:</label>
-                <input type="number" id="item2-quantity" name="item2-quantity" min="1" max="10" value="1">
-              </div>
-              <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
-            </div>
+    <div class="container cart">
+      <h2 class="cart-header">Your Order</h2>
+      <div class="row cart-items ">
+        <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
+          <img src="image/hero.jpg" height="50" width="50" alt="Item 1" class="cart-item-img">
+          <div class="mx-4">
+            <h3 class="">Item 1</h3>
           </div>
         </div>
-        <div class="cart-total">
-          <h4 class="cart-total-title">Total: $19.98</h4>
-          <button class="btn btn-primary checkout-btn">Confirm Order</button>
+        <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
+          <div class=" ">
+            <label for="">Quantity:</label>
+            <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1">
+          </div>
+          <div class="">
+            <p class="mx-1">$10.99</p>
+          </div>
+          <div class="mx-4">
+            <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
+          </div>
         </div>
       </div>
-
+      <div class="cart-total my-4">
+        <h4 class="cart-total-title mb-3">Total: $19.98</h4>
+        <button class="btn  btn-outline-success mb-3">Confirm Order</button>
+      </div>
 
     </div>
   </div>
