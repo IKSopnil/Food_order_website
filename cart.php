@@ -52,7 +52,7 @@
             <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="10.99">
           </div>
           <div class="">
-            <p class="mx-1">&#2547;10.99</p>
+            <p class="mx-1">  ৳ 10.99</p>
           </div>
           <div class="mx-4">
             <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
