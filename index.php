@@ -120,7 +120,7 @@ include "db_connect.php";
     </div>
 
     <div class="top_rated d-flex justify-content-center align-items-center" >
-      <div class="apitizer_card text-center   my-4">
+      <div class="apitizer_card text-center   my-4" >
         <div class="apitizer_card text-center ">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner row align-items-center">

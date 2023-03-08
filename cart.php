@@ -37,9 +37,9 @@
 
       <p>Choose and order your items.</p>
     </div>
-    <div class="container cart">
-      <h2 class="cart-header">Your Order</h2>
-      <div class="row cart-items ">
+    <div class="container cart ">
+      <h2 class="cart-header py-4">Your Order</h2>
+      <div class="row cart-items">
         <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
           <img src="image/hero.jpg" height="50" width="50" alt="Item 1" class="cart-item-img">
           <div class="mx-4">
@@ -47,12 +47,12 @@
           </div>
         </div>
         <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
-          <div class=" ">
-            <label for="">Quantity:</label>
-            <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1">
+          <div class="">
+            <label for="item1-quantity">Quantity:</label>
+            <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="10.99">
           </div>
           <div class="">
-            <p class="mx-1">$10.99</p>
+            <p class="mx-1">&#2547;10.99</p>
           </div>
           <div class="mx-4">
             <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
@@ -60,11 +60,34 @@
         </div>
       </div>
       <div class="cart-total my-4">
-        <h4 class="cart-total-title mb-3">Total: $19.98</h4>
+        <h4 class="cart-total-title mb-3">Total: ৳ 19.98</h4>
         <button class="btn  btn-outline-success mb-3">Confirm Order</button>
       </div>
-
     </div>
+
+    <script>
+      // Get the quantity input elements and the total price element
+      const quantityInputs = document.querySelectorAll('input[type="number"]');
+      const totalPriceElement = document.querySelector('.cart-total-title');
+
+      // Loop through the quantity input elements and add an event listener to each one
+      quantityInputs.forEach(input => {
+        input.addEventListener('input', () => {
+          // Get the price of the item
+          const price = parseFloat(input.dataset.price);
+
+          // Calculate the new total price
+          let totalPrice = 0;
+          quantityInputs.forEach(input => {
+            totalPrice += parseFloat(input.value) * parseFloat(input.dataset.price);
+          });
+
+          // Update the total price element with the new total price
+          totalPriceElement.textContent = 'Total: ৳ ' + totalPrice.toFixed(2);
+        });
+      });
+    </script>
+
   </div>
 </section>
 
