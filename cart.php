@@ -84,12 +84,19 @@ else{
     </div>
     <div class="container cart ">
       <h2 class="cart-header py-4">Your Order</h2>
-     
+     <?php 
+       if(!empty($_SESSION['cart'])){
+
+       foreach ($_SESSION['cart'] as $key => $value){
+
+
+       
+       ?>
       <div class="row cart-items">
         <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
-          <img src="<?php echo $cart_item['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
+          <img src="<?php echo $value['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
           <div class="mx-4">
-            <h3 class=""><?php echo $cart_item['title'] ?></h3>
+            <h3 class=""><?php echo $value['title'] ?></h3>
           </div>
         </div>
         <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
@@ -98,7 +105,7 @@ else{
             <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="0">
           </div>
           <div class="">
-            <p class="mx-1">  ৳ <?php echo $cart_item['price'] ?></p>
+            <p class="mx-1">  ৳ <?php echo $value['price'] ?></p>
           </div>
           <div class="mx-4">
             <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
@@ -110,7 +117,12 @@ else{
         <button class="btn  btn-outline-success mb-3">Confirm Order</button>
       </div>
     </div>
+    <?php 
+       }
+      }
 
+       
+       ?>
     <script>
       // Get the quantity input elements and the total price element
       const quantityInputs = document.querySelectorAll('input[type="number"]');
