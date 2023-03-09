@@ -1,6 +1,48 @@
-<?php include "navbar.php" ?>
+<?php include "navbar.php"
 
+?>
+
+
+<?php
+// start session to access cart items across pages
+session_start();
+session_destroy();
+
+// initialize cart if not exists
+if (!isset($_SESSION['cart'])) {
+  $_SESSION['cart'] = [];
+}
+
+// add item to cart if form submitted
+if (isset($_POST['add_to_cart'])) {
+  $product_id = $_GET['id'];
+  $product_image = $_POST['image'];
+  $product_title = $_POST['title'];
+  $product_price = $_POST['price'];
+  $quantity = 1;
+
+  // create new cart item using the retrieved product details
+  $cart_item = [
+    'id' => $product_id,
+    'image' => $product_image,
+    'title' => $product_title,
+    'price' => $product_price,
+    'quantity' => $quantity,
+  ];
+
+  // add cart item to cart
+  $_SESSION['cart'][] = $cart_item;
+}
+
+// calculate total
+$total = 0;
+foreach ($_SESSION['cart'] as $cart_item) {
+  $total += $cart_item['price'] * $cart_item['quantity'];
+}
+?>
 <head>
+
+
 
   <!--bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -9,6 +51,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+
 <style>
   #cart {
     background-color: #eee;
@@ -41,9 +84,9 @@
       <h2 class="cart-header py-4">Your Order</h2>
       <div class="row cart-items">
         <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
-          <img src="image/hero.jpg" height="50" width="50" alt="Item 1" class="cart-item-img">
+          <img src="<?php echo $cart_item['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
           <div class="mx-4">
-            <h3 class="">Item 1</h3>
+            <h3 class=""><?php echo $cart_item['title'] ?></h3>
           </div>
         </div>
         <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
@@ -52,7 +95,7 @@
             <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="10.99">
           </div>
           <div class="">
-            <p class="mx-1">  ৳ 10.99</p>
+            <p class="mx-1">  ৳ <?php echo $cart_item['price'] ?></p>
           </div>
           <div class="mx-4">
             <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
@@ -60,7 +103,7 @@
         </div>
       </div>
       <div class="cart-total my-4">
-        <h4 class="cart-total-title mb-3">Total: ৳ 19.98</h4>
+        <h4 class="cart-total-title mb-3">Total: ৳ 0</h4>
         <button class="btn  btn-outline-success mb-3">Confirm Order</button>
       </div>
     </div>

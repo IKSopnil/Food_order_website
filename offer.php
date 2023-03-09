@@ -1,4 +1,4 @@
-<head >
+<head>
     <!--boostrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -7,7 +7,7 @@
 
 </head>
 <?php include "db_connect.php";
-
+session_start();
 
 $sql = "SELECT * FROM offer";
 
@@ -27,16 +27,16 @@ $result = $conn->query($sql);
         width: 501px;
         height: 300px;
         margin-left: 5%;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 
     }
 
     .card:hover {
         transform: scale(1.006, 1.006);
         transition: .5s;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-       
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
 
     }
 
@@ -57,6 +57,10 @@ $result = $conn->query($sql);
 
     }
 </style>
+
+
+
+
 
 <section class="pb-4 d-flex justify-content-center align-item-center " id="offer">
 
@@ -82,8 +86,17 @@ $result = $conn->query($sql);
                             <div class="card-footer">
                                 <p class="fas fa-tags text-start mx-auto d-flex justify-content-end "><i class="mx-1"></i><?php echo $row['off_percentage'] ?> <span class="mx-1"> % OFF</span></p>
                                 <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
-                                <a href="#" class="btn btn-outline-dark   d-flex justify-content-center ">Add to Cart</a>
+                                <form action="cart.php?id=<?= $row['id'] ?>" method="post">
+                                   <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
                             </div>
+
+                            <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
+                            <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
+                            <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+
+                            </form>
+                            
+
                         </div>
                     </div>
             <?php
@@ -95,7 +108,7 @@ $result = $conn->query($sql);
 
 
     </div>
-    
+
 
 </section>
 <section>
@@ -103,4 +116,3 @@ $result = $conn->query($sql);
 
 </section>
 <?php include "footer.php" ?>
-
