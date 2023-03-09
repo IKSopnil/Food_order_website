@@ -3,43 +3,45 @@
 ?>
 
 
-<?php
-// start session to access cart items across pages
+<?php 
 session_start();
-session_destroy();
 
-// initialize cart if not exists
-if (!isset($_SESSION['cart'])) {
-  $_SESSION['cart'] = [];
+if(isset($_POST["add_to_cart"])){
+
+if(isset($_SESSION["cart"])){
+  $session_array_id= array_column($_SESSION["cart"], 'id');
+
+  if(!in_array($_GET['id'],$session_array_id)){
+
+    $session_array = array(
+      'id'=> $_GET['id'],
+      'image'=> $_POST['image'],
+      'title'=> $_POST['title'],
+      'price'=> $_POST['price'],
+  
+    );
+
+  }
+
+}
+else{
+
+  $session_array = array(
+    'id'=> $_GET['id'],
+    'image'=> $_POST['image'],
+    'title'=> $_POST['title'],
+    'price'=> $_POST['price'],
+
+  );
+
+  $_SESSION['cart'][]=$session_array;
 }
 
-// add item to cart if form submitted
-if (isset($_POST['add_to_cart'])) {
-  $product_id = $_GET['id'];
-  $product_image = $_POST['image'];
-  $product_title = $_POST['title'];
-  $product_price = $_POST['price'];
-  $quantity = 1;
-
-  // create new cart item using the retrieved product details
-  $cart_item = [
-    'id' => $product_id,
-    'image' => $product_image,
-    'title' => $product_title,
-    'price' => $product_price,
-    'quantity' => $quantity,
-  ];
-
-  // add cart item to cart
-  $_SESSION['cart'][] = $cart_item;
 }
 
-// calculate total
-$total = 0;
-foreach ($_SESSION['cart'] as $cart_item) {
-  $total += $cart_item['price'] * $cart_item['quantity'];
-}
+
 ?>
+
 <head>
 
 
@@ -82,6 +84,7 @@ foreach ($_SESSION['cart'] as $cart_item) {
     </div>
     <div class="container cart ">
       <h2 class="cart-header py-4">Your Order</h2>
+     
       <div class="row cart-items">
         <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
           <img src="<?php echo $cart_item['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
@@ -92,7 +95,7 @@ foreach ($_SESSION['cart'] as $cart_item) {
         <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
           <div class="">
             <label for="item1-quantity">Quantity:</label>
-            <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="10.99">
+            <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="0">
           </div>
           <div class="">
             <p class="mx-1">  ৳ <?php echo $cart_item['price'] ?></p>
