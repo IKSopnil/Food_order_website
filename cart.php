@@ -88,7 +88,7 @@ if(isset($_POST["add_to_cart"])){
 
 
       
-	<?php 
+      <?php 
 
 $total_price = 0;
 
@@ -107,14 +107,17 @@ if(!empty($_SESSION['cart'])){
       </div>
       <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
         <div class="">
-          <label for="item1-quantity">Quantity:</label>
-          <input type="number" id="item1-quantity" name="item1-quantity" min="1" max="10" value="1" data-price="0">
+          <label for="<?php echo $key ?>-quantity">Quantity:</label>
+          <input type="number" id="<?php echo $key ?>-quantity" name="<?php echo $key ?>-quantity" min="1" max="10" value="1" data-price="<?php echo $value['price'] ?>">
         </div>
         <div class="">
           <p class="mx-1">  ৳ <?php echo $value['price'] ?></p>
         </div>
         <div class="mx-4">
-          <button class="btn btn-danger btn-sm remove-item-btn">Remove</button>
+        <form method="post" action="remove_item.php">
+            <input type="hidden" name="key" value="<?php echo $key ?>">
+            <button type="submit" class="btn btn-danger btn-sm remove-item-btn">Remove</button>
+          </form>
         </div>
       </div>
     </div>
@@ -127,16 +130,36 @@ else{
 
 ?>
 <div class="cart-total my-4">
-  <h4 class="cart-total-title mb-3">Total: ৳ <?php echo $total_price ?></h4>
-  <button class="btn  btn-outline-success mb-3">Confirm Order</button>
+  <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
+  <button class="btn btn-outline-success mb-3">Confirm Order</button>
 </div>
+<script>
+  
+  const quantityInputs = document.querySelectorAll('input[type="number"]');
+
+  
+  quantityInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      let newTotalPrice = 0;
+      
+      quantityInputs.forEach(input => {
+        const quantity = input.value;
+        const price = input.dataset.price;
+        const totalItemPrice = quantity * price;
+        newTotalPrice += totalItemPrice;
+      });
+      
+      const cartTotalPrice = document.getElementById('cart-total-price');
+      cartTotalPrice.textContent = `৳ ${newTotalPrice}`;
+    });
+  });
+</script>
+
 
   
 
   </div>
 </section>
-<?php
- 
- ?>
+
 
 <?php include "footer.php" ?>
