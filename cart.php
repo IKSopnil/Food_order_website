@@ -39,7 +39,9 @@ if(isset($_POST["add_to_cart"])){
     $_SESSION['cart'][]=$session_array;
   }
   
-?>  
+}
+
+?>
 
 <head>
 
@@ -85,7 +87,8 @@ if(isset($_POST["add_to_cart"])){
       <h2 class="cart-header py-4">Your Order</h2>
 
 
-      <?php 
+      
+	<?php 
 
 $total_price = 0;
 
@@ -118,8 +121,11 @@ if(!empty($_SESSION['cart'])){
     <?php 
   }
 }
-?>
+else{
+  echo "<p>Your cart is empty.</p>";
+}
 
+?>
 <div class="cart-total my-4">
   <h4 class="cart-total-title mb-3">Total: ৳ <?php echo $total_price ?></h4>
   <button class="btn  btn-outline-success mb-3">Confirm Order</button>
@@ -130,7 +136,7 @@ if(!empty($_SESSION['cart'])){
   </div>
 </section>
 <?php
- }
+ 
  ?>
 
 <?php include "footer.php" ?>
