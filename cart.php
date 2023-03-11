@@ -3,7 +3,7 @@
 ?>
 
 
-<?php 
+<?php
 session_start();
 
 
@@ -55,78 +55,85 @@ session_start();
       <h2 class="cart-header py-4">Your Order</h2>
 
 
-      
-      <?php 
 
-$total_price = 0;
+      <?php
 
-if(!empty($_SESSION['cart'])){
+      $total_price = 0;
 
-  foreach ($_SESSION['cart'] as $key => $value){
+      if (!empty($_SESSION['cart'])) {
 
-    $total_price += $value['price'];
-    ?>
-    <div class="row cart-items">
-      <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
-        <img src="<?php echo $value['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
-        <div class="mx-4">
-          <h3 class=""><?php echo $value['title'] ?></h3>
-        </div>
+        foreach ($_SESSION['cart'] as $key => $value) {
+
+          $total_price += $value['price'];
+      ?>
+          <div class="row cart-items border m-3 bg-light ">
+            <style>
+              .row:hover {
+                transform: scale(1.006, 1.006);
+                transition: .2s;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+
+              }
+            </style>
+            <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
+              <img src="<?php echo $value['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
+              <div class="mx-4">
+                <h3 class=""><?php echo $value['title'] ?></h3>
+              </div>
+            </div>
+            <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
+              <div class="">
+                <label for="<?php echo $key ?>-quantity">Quantity:</label>
+                <input type="number" id="<?php echo $key ?>-quantity" name="<?php echo $key ?>-quantity" min="1" max="10" value="1" data-price="<?php echo $value['price'] ?>">
+              </div>
+              <div class="">
+                <p class="mx-1"> ৳ <?php echo $value['price'] ?></p>
+              </div>
+              <div class="mx-4">
+                <form method="post" action="remove_item.php">
+                  <input type="hidden" name="key" value="<?php echo $key ?>">
+                  <button type="submit" class="btn btn-danger btn-sm remove-item-btn">Remove</button>
+                </form>
+              </div>
+            </div>
+          </div>
+      <?php
+        }
+      } else {
+        echo "<p>Your cart is empty.</p>";
+      }
+
+      ?>
+      <div class="cart-total my-4">
+        <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
+        <button class="btn btn-outline-success mb-3">Confirm Order</button>
       </div>
-      <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
-        <div class="">
-          <label for="<?php echo $key ?>-quantity">Quantity:</label>
-          <input type="number" id="<?php echo $key ?>-quantity" name="<?php echo $key ?>-quantity" min="1" max="10" value="1" data-price="<?php echo $value['price'] ?>">
-        </div>
-        <div class="">
-          <p class="mx-1">  ৳ <?php echo $value['price'] ?></p>
-        </div>
-        <div class="mx-4">
-        <form method="post" action="remove_item.php">
-            <input type="hidden" name="key" value="<?php echo $key ?>">
-            <button type="submit" class="btn btn-danger btn-sm remove-item-btn">Remove</button>
-          </form>
-        </div>
-      </div>
+      <script>
+        const quantityInputs = document.querySelectorAll('input[type="number"]');
+
+
+        quantityInputs.forEach(input => {
+          input.addEventListener('change', () => {
+            let newTotalPrice = 0;
+
+            quantityInputs.forEach(input => {
+              const quantity = input.value;
+              const price = input.dataset.price;
+              const totalItemPrice = quantity * price;
+              newTotalPrice += totalItemPrice;
+            });
+
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            cartTotalPrice.textContent = `৳ ${newTotalPrice}`;
+          });
+        });
+      </script>
+
+
+
+
     </div>
-    <?php 
-  }
-}
-else{
-  echo "<p>Your cart is empty.</p>";
-}
-
-?>
-<div class="cart-total my-4">
-  <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
-  <button class="btn btn-outline-success mb-3">Confirm Order</button>
-</div>
-<script>
-  
-  const quantityInputs = document.querySelectorAll('input[type="number"]');
-
-  
-  quantityInputs.forEach(input => {
-    input.addEventListener('change', () => {
-      let newTotalPrice = 0;
-      
-      quantityInputs.forEach(input => {
-        const quantity = input.value;
-        const price = input.dataset.price;
-        const totalItemPrice = quantity * price;
-        newTotalPrice += totalItemPrice;
-      });
-      
-      const cartTotalPrice = document.getElementById('cart-total-price');
-      cartTotalPrice.textContent = `৳ ${newTotalPrice}`;
-    });
-  });
-</script>
-
-
-  
-
-  </div>
 </section>
 
 

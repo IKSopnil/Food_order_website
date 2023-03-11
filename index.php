@@ -2,7 +2,7 @@
 include "db_connect.php";
 
 session_start();
-session_destroy();
+
 
 ?>
 <!DOCTYPE html>
@@ -123,7 +123,7 @@ session_destroy();
       <p class="my-5">These top 10 items are ranked based on how much people like them.</p>
     </div>
 
-    <div class="top_rated d-flex justify-content-center align-items-center" >
+    <div class="top_rated d-flex justify-content-center align-items-center">
       <div class="apitizer_card text-center   my-4">
         <div class="apitizer_card text-center ">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -166,7 +166,7 @@ session_destroy();
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button  style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
@@ -212,62 +212,62 @@ session_destroy();
 
 <section class="">
   <?php include 'footer.php'; ?>
-  
+
 
 </section>
 <!--cart-->
 
 <div class="floating-cart">
 
-<?php
-// Check if the cart array is set and not null
-if(isset($_SESSION['cart']) ) {
-  // Get the number of items in the cart
-  $num_items_in_cart = count($_SESSION['cart']); 
+  <?php
+  // Check if the cart array is set and not null
+  if (isset($_SESSION['cart'])) {
+    // Get the number of items in the cart
+    $num_items_in_cart = count($_SESSION['cart']);
 
-?>
-  <a href="cart.php"id="kol">
-    <i class="fas fa-shopping-cart"></i>
-    <span class="badge badge-pill rounded-circle"><?php echo $num_items_in_cart;} ?></span>
-  </a>
+  ?>
+    <a href="cart.php" id="kol">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="badge badge-pill rounded-circle "><?php echo $num_items_in_cart; ?></span>
+    </a>
+  <?php } ?>
 </div>
 
 <style>
- 
-    .floating-cart {
-  position: fixed;
-  bottom: 20px;
-  right: 80px;
+  .floating-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 80px;
 
-}
-.badge {
-  background-color: red;
-}
+  }
 
-.floating-cart a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #343a40;
-  color: #fff;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  font-size: 20px;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-}
+  .badge {
+    background-color: red;
+  }
 
-.floating-cart a:hover {
-  transform: scale(1.1);
-}
+  .floating-cart a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #343a40;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
 
-.floating-cart .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-}
+  .floating-cart a:hover {
+    transform: scale(1.1);
+  }
 
+  .floating-cart .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
 </style>
 
 <!--uparrow-->
