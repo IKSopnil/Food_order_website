@@ -6,40 +6,8 @@
 <?php 
 session_start();
 
-if(isset($_POST["add_to_cart"])){
 
-  if(isset($_SESSION["cart"])){
-  
-    $session_array_id= array_column($_SESSION["cart"], 'id');
-  
-    if(!in_array($_GET['id'],$session_array_id)){
-  
-      $session_array = array(
-        'id'=> $_GET['id'],
-        'image'=> $_POST['image'],
-        'title'=> $_POST['title'],
-        'price'=> $_POST['price'],
-    
-      );
-  
-      $_SESSION['cart'][]=$session_array;
-    }
-  
-  }
-  else{
-  
-    $session_array = array(
-      'id'=> $_GET['id'],
-      'image'=> $_POST['image'],
-      'title'=> $_POST['title'],
-      'price'=> $_POST['price'],
-  
-    );
-  
-    $_SESSION['cart'][]=$session_array;
-  }
-  
-}
+
 
 ?>
 

@@ -14,6 +14,40 @@ $sql = "SELECT * FROM offer";
 
 $result = $conn->query($sql);
 
+if(isset($_POST["add_to_cart"])){
+
+    if(isset($_SESSION["cart"])){
+    
+      $session_array_id= array_column($_SESSION["cart"], 'id');
+    
+      if(!in_array($_GET['id'],$session_array_id)){
+    
+        $session_array = array(
+          'id'=> $_GET['id'],
+          'image'=> $_POST['image'],
+          'title'=> $_POST['title'],
+          'price'=> $_POST['price'],
+      
+        );
+    
+        $_SESSION['cart'][]=$session_array;
+      }
+    
+    }
+    else{
+    
+      $session_array = array(
+        'id'=> $_GET['id'],
+        'image'=> $_POST['image'],
+        'title'=> $_POST['title'],
+        'price'=> $_POST['price'],
+    
+      );
+    
+      $_SESSION['cart'][]=$session_array;
+    }
+}  
+
 ?>
 <?php include "navbar.php" ?>
 
@@ -86,7 +120,7 @@ $result = $conn->query($sql);
                             <div class="card-footer">
                                 <p class="fas fa-tags text-start mx-auto d-flex justify-content-end "><i class="mx-1"></i><?php echo $row['off_percentage'] ?> <span class="mx-1"> % OFF</span></p>
                                 <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
-                                <form action="cart.php?id=<?= $row['id'] ?>" method="post">
+                                <form action="offer.php?id=<?= $row['id'] ?>" method="post">
                                    <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
                             </div>
 
