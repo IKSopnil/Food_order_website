@@ -47,6 +47,13 @@ if(isset($_POST["add_to_cart"])){
       $_SESSION['cart'][]=$session_array;
     }
 }  
+// Get the number of items in the cart
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+  }
+$num_items_in_cart = count($_SESSION['cart']);
+
 
 ?>
 <?php include "navbar.php" ?>
@@ -142,6 +149,48 @@ if(isset($_POST["add_to_cart"])){
 
 
     </div>
+    <div class="floating-cart">
+  <a href="cart.php">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="badge badge-pill rounded-circle"><?php echo $num_items_in_cart; ?></span>
+  </a>
+</div>
+<style>
+    .floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+}
+.badge {
+  background-color: red;
+}
+
+.floating-cart a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #343a40;
+  color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.floating-cart a:hover {
+  transform: scale(1.1);
+}
+
+.floating-cart .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+</style>
 
 
 </section>
