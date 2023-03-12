@@ -68,7 +68,7 @@ session_start();
       ?>
           <div class="row cart-items border m-3 bg-light ">
             <style>
-              .row:hover {
+              .cart-items:hover {
                 transform: scale(1.006, 1.006);
                 transition: .2s;
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
