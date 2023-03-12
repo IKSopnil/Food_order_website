@@ -6,6 +6,66 @@ $sql = "SELECT * FROM desserts";
 
 $result = $conn->query($sql);
 
+
+
+$result = $conn->query($sql);
+
+$sql = "SELECT * FROM desserts";
+
+
+$result = $conn->query($sql);
+
+
+
+
+
+
+
+$result = $conn->query($sql);
+
+if(isset($_POST["add_to_cart"])){
+
+    if(isset($_SESSION["cart"])){
+    
+      $session_array_id= array_column($_SESSION["cart"], 'id');
+    
+      if(!in_array($_GET['id'],$session_array_id)){
+    
+        $session_array = array(
+          'id'=> $_GET['id'],
+          'image'=> $_POST['image'],
+          'title'=> $_POST['title'],
+          'price'=> $_POST['price'],
+      
+        );
+    
+        $_SESSION['cart'][]=$session_array;
+      }
+    
+    }
+    else{
+    
+      $session_array = array(
+        'id'=> $_GET['id'],
+        'image'=> $_POST['image'],
+        'title'=> $_POST['title'],
+        'price'=> $_POST['price'],
+    
+      );
+    
+      $_SESSION['cart'][]=$session_array;
+    }
+}  
+// Get the number of items in the cart
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+  }
+$num_items_in_cart = count($_SESSION['cart']);
+
+
+
+
 ?>
 <style>
 .card img {
@@ -40,6 +100,8 @@ $result = $conn->query($sql);
   </div>
   <div class="desert_card justify-content-center align-items-center">
     <div class="row container d-flex justify-content-center align-item-center row-cols-1 row-cols-md-3 g-4">
+    
+            
     <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -55,8 +117,17 @@ $result = $conn->query($sql);
                             <div class="card-footer">
                                 
                                 <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
-                                <a href="#" class="btn btn-outline-dark   d-flex justify-content-center ">Add to Cart</a>
+                                <form action="index.php?id=<?= $row['id'] ?>" method="post">
+                                   <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
                             </div>
+
+                            <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
+                            <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
+                            <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+
+                            </form>
+                            
+
                         </div>
                     </div>
             <?php
