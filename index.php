@@ -41,6 +41,29 @@ session_start();
         <p style="margin-bottom:10%">Get your favorite food delivered straight to your doorstep</p>
         <a href="cart.php" class="button ">Order Now</a>
       </div>
+      <div class="hero-content  my-5  d-flex justify-content-center align-items-center">
+        <form action="search.php">
+          <div class="form-outline d-flex">
+            <input type="search" id="form1" class="form-control " placeholder="Search" />
+            <button type="submit" class="btn btn-danger mx-1">
+              <i class="fas fa-search"></i>
+            </button>
+            <style>
+              .hero-content .btn{
+                background-color:#ff0033
+              }
+              .hero-content .btn:hover {
+                color: #000000;
+                box-shadow: 2px 2px 15px #ffffff;
+                background: #ffffff;             
+                transition: .5s;
+                border: none;
+              }
+            </style>
+          </div>
+
+        </form>
+      </div>
     </div>
   </section>
   <section class="services" id="services">
