@@ -39,33 +39,8 @@
     .offer .row {
         margin-top: 1%;
     }
-    .srch {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-  }
   
-  .srch input[type="text"] {
-	padding: 8px;
-	font-size: 18px;
-	border-radius: 4px;
-	border: 1px solid #ccc;
-	width: 300px;
-	max-width: 100%;
-	margin-right: -1px;
-	margin-top: -1px;
-  }
-  
-  .srch button[type="submit"] {
-	background-color: #ff0033;
-	color: white;
-	
-	border-radius: 5px;
-	font-size: 18px;
-	cursor: pointer;
-	padding: 8px 16px;
-	transition: all 0.3s ease;
-  }
+ 
   
   .srch button[type="submit"]:hover {
 	background-color: #ffffff;
