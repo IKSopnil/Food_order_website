@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2023 at 06:58 AM
+-- Generation Time: Mar 13, 2023 at 08:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -76,6 +76,19 @@ INSERT INTO `beverages` (`id`, `image`, `title`, `description`, `price`, `off_pe
 (8, 'https://images.unsplash.com/photo-1473115209096-e0375dd6b3b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80', 'Smoothie', 'Thick drink made with blended fruit', 100, 10),
 (9, 'https://images.unsplash.com/photo-1493193218435-eb21654c7df6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80', 'Banana Shake', 'Sweet and creamy banana-flavored dr', 120, 10),
 (10, 'https://images.unsplash.com/photo-1586195831800-24f14c992cea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80', 'Chocolate Shake', 'Rich and indulgent chocolate bevera', 200, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(10) NOT NULL,
+  `image` varchar(35) NOT NULL,
+  `title` varchar(35) NOT NULL,
+  `price` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -194,6 +207,12 @@ ALTER TABLE `beverages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `desserts`
 --
 ALTER TABLE `desserts`
@@ -232,6 +251,12 @@ ALTER TABLE `appetizers`
 --
 ALTER TABLE `beverages`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `desserts`

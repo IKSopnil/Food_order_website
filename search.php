@@ -39,6 +39,43 @@
     .offer .row {
         margin-top: 1%;
     }
+    .srch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .srch input[type="text"] {
+	padding: 8px;
+	font-size: 18px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	width: 300px;
+	max-width: 100%;
+	margin-right: -1px;
+	margin-top: -1px;
+  }
+  
+  .srch button[type="submit"] {
+	background-color: #ff0033;
+	color: white;
+	
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 8px 16px;
+	transition: all 0.3s ease;
+  }
+  
+  .srch button[type="submit"]:hover {
+	background-color: #ffffff;
+	color: rgb(0, 0, 0);
+	box-shadow: 2px 2px 15px #fff
+  }
+  
+
+  
+
     </style>
     <section class="container justify-content-center align-items-center my-3">
 
@@ -49,16 +86,12 @@
             <p>Search the best deals and special offers</p>
         </div>
 
-        <form method="post" class="text-center">
-            <label for="search"></label>
-            <input type="text" name="search" id="search">
-            <button type="submit" name="submit" class="btn btn-danger mx-1">
-            <i class="fas fa-search"></i>
-                
-            </button>
-            
-
-        </form>
+        <form method="post" action="search.php" class="srch text-center my-5" >
+        <input type="text" name="search" id="search" placeholder="Search for foods">
+        <button type="submit" name="submit" class="btn  mx-2">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
     </div>
 
         
