@@ -97,6 +97,16 @@ $num_items_in_cart = count($_SESSION['cart']);
 
 
             <?php
+
+
+            $items_per_page = 12;
+            $total_pages = ceil($result->num_rows / $items_per_page);
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $offset = ($current_page - 1) * $items_per_page;
+            $sql = "SELECT * FROM appetizers LIMIT $items_per_page OFFSET $offset";
+            $result = $conn->query($sql);
+
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
             ?>
@@ -128,9 +138,44 @@ $num_items_in_cart = count($_SESSION['cart']);
                 }
             }
             ?>
+
         </div>
     </div>
 
+    <?php
+
+
+    echo '<div class="pagination my-5 justify-content-center">';
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $active = ($i == $current_page) ? 'active' : '';
+        echo '<a href="?page=' . $i . '" class=" mx-3' . $active . '">' . $i . '</a>';
+    }
+    echo '</div>';
+    ?>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .pagination a {
+        color: #333;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        transition: background-color 0.3s;
+        margin-right: 5px;
+    }
+
+    .pagination a.active,
+    .pagination a:hover {
+        background-color: #ddd;
+    }
+</style>
 
 
 </div>
