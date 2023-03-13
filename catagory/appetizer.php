@@ -57,6 +57,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 ?>
 
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
@@ -93,65 +94,68 @@ $num_items_in_cart = count($_SESSION['cart']);
         <p>This category can include a variety of finger foods, dips, spreads, and small bites.</p>
     </div>
     <div class="apitizer_card text-center   mx-auto">
-        <div class="container row d-flex justify-content-center align-item-center  row-cols-md-3 g-4 ">
-
-
-            <?php
-
-
-            $items_per_page = 12;
-            $total_pages = ceil($result->num_rows / $items_per_page);
-            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-            $offset = ($current_page - 1) * $items_per_page;
-            $sql = "SELECT * FROM appetizers LIMIT $items_per_page OFFSET $offset";
-            $result = $conn->query($sql);
-
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-            ?>
-                    <div class=" col-lg-4 d-flex justify-content-center align-item-center ">
-                        <div class="card h-100 text-center ">
-
-                            <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $row['title'] ?></h5>
-                                <p class="card-text"><?php echo $row['description'] ?></p>
-                            </div>
-                            <div class="card-footer">
-
-                                <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
-                                <form action="index.php?id=<?= $row['id'] ?>" method="post">
-                                    <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
-                            </div>
-
-                            <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
-                            <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
-                            <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
-
-                            </form>
-
-
-                        </div>
-                    </div>
-            <?php
-                }
-            }
-            ?>
-
-        </div>
-    </div>
+<div class="container row d-flex justify-content-center align-item-center  row-cols-md-3 g-4 ">
 
     <?php
+    $items_per_page = 12;
+    $total_pages = ceil($result->num_rows / $items_per_page);
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $offset = ($current_page - 1) * $items_per_page;
+    $sql = "SELECT * FROM appetizers LIMIT $items_per_page OFFSET $offset";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <div class=" col-lg-4 d-flex justify-content-center align-item-center ">
+                <div class="card h-100 text-center ">
+
+                    <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                        <p class="card-text"><?php echo $row['description'] ?></p>
+                    </div>
+                    <div class="card-footer">
+
+                        <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
+                        <form action="index.php?id=<?= $row['id'] ?>" method="post">
+                            <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
+                    </div>
+
+                    <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
+                    <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
+                    <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+
+                    </form>
 
 
-    echo '<div class="pagination my-5 justify-content-center">';
-    for ($i = 1; $i <= $total_pages; $i++) {
-        $active = ($i == $current_page) ? 'active' : '';
-        echo '<a href="?page=' . $i . '" class=" mx-3' . $active . '">' . $i . '</a>';
+                </div>
+            </div>
+    <?php
+        }
     }
-    echo '</div>';
     ?>
+
+</div>
+
+<?php
+echo '<div class="pagination my-5 justify-content-center" id="pagination">';
+for ($i = 1; $i <= $total_pages; $i++) {
+    $active = ($i == $current_page) ? 'active' : '';
+    echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
+}
+echo '</div>';
+?>
+
+<script>
+    $(document).ready(function() {
+        $('#pagination a').click(function(event) {
+            event.preventDefault(); // Prevent default click behavior
+            var page = $(this).attr('href'); // Get the page URL
+            $('#content').load(page); // Load the new content into a <div> with ID "content"
+        });
+    });
+</script>
 
 <style>
     .pagination {
