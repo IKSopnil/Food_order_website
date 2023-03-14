@@ -6,10 +6,6 @@ $sql = "SELECT * FROM desserts";
 
 $result = $conn->query($sql);
 
-
-
-$result = $conn->query($sql);
-
 $sql = "SELECT * FROM desserts";
 
 
@@ -63,8 +59,9 @@ $num_items_in_cart = count($_SESSION['cart']);
 
 
 
-
 ?>
+
+
 <style>
     .card img {
         width: 100% !important;
@@ -90,13 +87,14 @@ $num_items_in_cart = count($_SESSION['cart']);
     }
 </style>
 
-<div class="carousel-item mb-4" id="Desserts">
+<div class="carousel-item mb-4" id="Beverages">
     <div class="text-center">
-        <h3>Desserts</h3>
-        <p>This category includes sweet dishes, such as cakes, pies, cookies, and other confections.</p>
+        <h3>Beverages</h3>
+        <p>This category can include non-alcoholic drinks, such as cocktails, smoothies, coffee, and tea.</p>
+
 
     </div>
-    <div class="desert_card justify-content-center align-items-center"id="initiated_dessert">
+    <div class="dessert"id="initiated_dessert">
         <div class="row container d-flex justify-content-center align-item-center row-cols-1 row-cols-md-3 g-4">
 
 
@@ -108,6 +106,7 @@ $num_items_in_cart = count($_SESSION['cart']);
             $offset = ($current_page - 1) * $items_per_page;
             $sql = "SELECT * FROM desserts LIMIT $items_per_page OFFSET $offset";
             $result = $conn->query($sql);
+
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -143,8 +142,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
         </div>
 
-    </div>
-    <?php
+        <?php
         echo '<div class="pagination my-5 justify-content-center" id="pagination">';
         for ($i = 1; $i <= $total_pages; $i++) {
             $active = ($i == intval($current_page) || (!$current_page && $i == 1)) ? 'active' : '';
@@ -190,4 +188,5 @@ $num_items_in_cart = count($_SESSION['cart']);
 }
 </style>
 
+    </div>
 </div>

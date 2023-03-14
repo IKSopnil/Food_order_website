@@ -105,6 +105,8 @@ $num_items_in_cart = count($_SESSION['cart']);
             $items_per_page = 12;
             $total_pages = ceil($result->num_rows / $items_per_page);
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+
             $offset = ($current_page - 1) * $items_per_page;
             $sql = "SELECT * FROM  main_courses LIMIT $items_per_page OFFSET $offset";
             $result = $conn->query($sql);
