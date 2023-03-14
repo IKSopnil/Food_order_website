@@ -97,7 +97,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
 
     </div>
-    <div class="main_card justify-content-center align-items-center">
+    <div class="main_card justify-content-center align-items-center" id="initiated_maincourse">
         <div class="container row d-flex justify-content-center align-item-center  row-cols-md-3 g-4 ">
 
             <?php
@@ -146,14 +146,26 @@ $num_items_in_cart = count($_SESSION['cart']);
     
     <?php
 
+echo '<div class="pagination my-5 justify-content-center" id="pagination">';
+for ($i = 1; $i <= $total_pages; $i++) {
+    $active = ($i == intval($current_page) || (!$current_page && $i == 1)) ? 'active' : '';
+    echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
+}
+echo '</div>';
 
-    echo '<div class="pagination my-5 justify-content-center">';
-    for ($i = 1; $i <= $total_pages; $i++) {
-        $active = ($i == $current_page) ? 'active' : '';
-        echo '<a href="?page=' . $i . '" class=" mx-3' . $active . '">' . $i . '</a>';
+
+?>
+
+<script>
+    function ajaxPaging() {
+        $('.pagination a').on('click', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#initiated_maincourse').load(url + ' div#initiated_maincourse', null, ajaxPaging); // re-run on complete
+        });
     }
-    echo '</div>';
-    ?>
+    ajaxPaging()
+</script>
 
 <style>
     .pagination {

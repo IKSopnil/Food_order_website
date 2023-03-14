@@ -94,7 +94,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
 
     </div>
-    <div class="drink">
+    <div class="drink"id="initiated_beverage">
         <div class="row container d-flex justify-content-center align-item-center row-cols-1 row-cols-md-3 g-4">
 
 
@@ -106,6 +106,7 @@ $num_items_in_cart = count($_SESSION['cart']);
             $offset = ($current_page - 1) * $items_per_page;
             $sql = "SELECT * FROM beverages LIMIT $items_per_page OFFSET $offset";
             $result = $conn->query($sql);
+
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -141,17 +142,27 @@ $num_items_in_cart = count($_SESSION['cart']);
 
         </div>
 
-
         <?php
+        echo '<div class="pagination my-5 justify-content-center" id="pagination">';
+        for ($i = 1; $i <= $total_pages; $i++) {
+            $active = ($i == intval($current_page) || (!$current_page && $i == 1)) ? 'active' : '';
+            echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
+        }
+        echo '</div>';
 
 
-echo '<div class="pagination my-5 justify-content-center">';
-for ($i = 1; $i <= $total_pages; $i++) {
-    $active = ($i == $current_page) ? 'active' : '';
-    echo '<a href="?page=' . $i . '" class=" mx-3' . $active . '">' . $i . '</a>';
-}
-echo '</div>';
-?>
+        ?>
+
+        <script>
+            function ajaxPaging() {
+                $('.pagination a').on('click', function(e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $('#initiated_beverage').load(url + ' div#initiated_beverage', null, ajaxPaging); // re-run on complete
+                });
+            }
+            ajaxPaging()
+        </script>
 
 <style>
 .pagination {
