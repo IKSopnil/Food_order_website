@@ -70,30 +70,32 @@
             <p>Contact us for any questions or concerns you may have.</p>
 
         </div>
+        
         <div class=" container row bg-white my-5">
-            <div class="col-lg-6  justify-content-center align-items-center">
-                <p>Thank you for your interest in our company! We would love to hear from you. If you have any questions, comments, or feedback, please don't hesitate to get in touch with us using the form below. One of our representatives will get back to you as soon as possible.</p>
-                <p>
+        <h3 class="my-5">Message Us</h3>
+            <div class="col-lg-6  justify-content-center align-items-center mt-4">
+                <p class="my-4">"Thank you for your interest in our company! We would love to hear from you. If you have any questions, comments, or feedback, please don't hesitate to get in touch with us using the form below. One of our representatives will get back to you as soon as possible.</p>
+                <p class="my-4">
                 Alternatively, you can reach us by phone or email. Our contact information can be found on the right-hand side of this page.
                 </p>
-                <p>
+                <p class="my-4">
                 We value your input and appreciate your business. Thank you for choosing us!
-                </p>
+                "</p>
             </div>
 
-            <div class="col-lg-6 justify-content-center">
+            <div class="col-lg-6 justify-content-center my-2 mb-5">
                 <div>
-                    <form>
+                    <form class="text-start">
                         <label for="name">Name:</label>
                         <input type="text" id="name" name="name" required>
 
                         <label for="email">Email:</label>
                         <input type="text" id="email" name="email" required>
 
-                        <label for="message">Message:</label>
+                        <label for="message ">Message:</label>
                         <textarea id="message" name="message" rows="4" required></textarea>
 
-                        <input type="submit" value="Send">
+                        <input type="submit" class="my-3" value="Send">
                     </form>
                 </div>
             </div>
