@@ -12,6 +12,45 @@
 <?php include "navbar.php" ?>
 
 <style>
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #ccc;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #444;
+    }
+
+    input[type=text],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #444;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
     .contract{
         background-color: #eee;
     }
@@ -24,15 +63,15 @@
     }
 </style>
 </head>
-<section>
-    <div class="contract text-center ">
+<section class="contract d-flex justify-content-center">
+    <div class=" text-center   mx-auto">
         <div class="contract_head container text-center my-4 justify-content-center mt-0 pt-5 bg-white" >
             <h3>Contract Us </h3>
-            <p>Get in touch with us!</p>
+            <p>Contact us for any questions or concerns you may have.</p>
 
         </div>
-        <div class=" container row bg-white">
-            <div class="col-lg-6  justify-content-center ">
+        <div class=" container row bg-white my-5">
+            <div class="col-lg-6  justify-content-center align-items-center">
                 <p>Thank you for your interest in our company! We would love to hear from you. If you have any questions, comments, or feedback, please don't hesitate to get in touch with us using the form below. One of our representatives will get back to you as soon as possible.</p>
                 <p>
                 Alternatively, you can reach us by phone or email. Our contact information can be found on the right-hand side of this page.
@@ -42,7 +81,7 @@
                 </p>
             </div>
 
-            <div class="col-lg-6 justify-content-end">
+            <div class="col-lg-6 justify-content-center">
                 <div>
                     <form>
                         <label for="name">Name:</label>
