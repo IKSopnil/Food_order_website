@@ -1,4 +1,8 @@
-<?php include"db_connect.php" ?>
+<?php include "db_connect.php";
+
+
+?>
+
 <head>
 
     <!-- Bootstrap CSS -->
@@ -42,47 +46,92 @@
     <div class="container my-5">
         <!-- Example single danger button -->
         <div class="form-outline">
-        <label for="inputState">Filter:</label>
-            <select id="inputState" class="form-control my-2 text-center justify-content-center w-50">
-                <option selected><button>All Post...</button></option>
-                <option><button>Appetizer</button></option>
-                <option><button>Main Course</button></option>
-                <option><button>Dessert</button></option>
-                <option><button>Beverage</button></option>
-                <option><button>Offer</button></option>
-                
-            </select>
-            
+            <form method="POST" action="">
+                <div class="form-outline">
+                    <label for="">Filter:</label>
+                    <select id="inputState" name="inputState" class="form-control my-2 text-center justify-content-center w-50">
+                        <option value="all" >All Post</option>
+                        <option value="appetizer">Appetizer</option>
+                        <option value="maincourse">Main Course</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="beverage">Beverage</option>
+                        <option value="offer">Offer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+
+
+
         </div>
         <div>
-        <div class="container">
-  <h2>Admin Dashboard</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Serial</th>
-        <th>Title</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="">
-        <td>1</td>
-        <td>Product 1</td>
-        <td><img src="product1.jpg" alt="Product 1" style="max-width: 100px;"></td>
-        <td>$10.00</td>
-        <td>
-          <a href="#" class="btn btn-primary">Edit</a>
-          <a href="#" class="btn btn-danger">Delete</a>
-        </td>
-      </tr>
-    
-      
-    </tbody>
-  </table>
-</div>
+            <div class="container">
+                <h2 class="my-5">Post Management</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php
+                        if (isset($_POST['inputState'])) {
+
+                            // Get the selected value from the dropdown
+                            $selectedValue = $_POST['inputState'];
+
+                            // Define the SQL query based on the selected value
+                            if ($selectedValue === "all") {
+                                $sql = "SELECT * FROM appetizers
+            union SELECT * FROM main_courses
+            union SELECT * FROM desserts
+            union SELECT * FROM beverages
+            union SELECT * FROM offer
+            ";
+                            } elseif ($selectedValue === "appetizer") {
+                                $sql = "SELECT * FROM appetizers";
+                            } elseif ($selectedValue === "maincourse") {
+                                $sql = "SELECT * FROM main_courses";
+                            } elseif ($selectedValue === "dessert") {
+                                $sql = "SELECT * FROM desserts";
+                            } elseif ($selectedValue === "beverage") {
+                                $sql = "SELECT * FROM beverages";
+                            } elseif ($selectedValue === "offer") {
+                                $sql = "SELECT * FROM offer";
+                            }
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+
+                                $num = 0;
+                                while ($row = $result->fetch_assoc()) {
+
+
+                        ?>
+                                    <tr class="">
+                                        <td><?php echo ++$num ?></td>
+                                        <td><?php echo $row['title'] ?></td>
+                                        <td><img src="<?php echo $row['image'] ?>" alt="Product 1" style="max-width: 100px;"></td>
+                                        <td><?php echo $row['price'] ?></td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary">Edit</a>
+                                            <a href="#" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+
+                        <?php
+                                }
+                            }
+                        } ?>
+
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
