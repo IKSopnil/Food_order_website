@@ -51,14 +51,15 @@
                     <label for="">Filter:</label>
                     <select id="inputState" name="inputState" class="form-control my-2 text-center justify-content-center w-50">
                         <option value="all" >All Post</option>
-                        <option value="appetizer">Appetizer</option>
+                        <option value="appetizer" selected>Appetizer</option>
                         <option value="maincourse">Main Course</option>
                         <option value="dessert">Dessert</option>
                         <option value="beverage">Beverage</option>
                         <option value="offer">Offer</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <small>(Press submit after selecting option.)<br></small>
+                <button type="submit" class="btn btn-success my-2">Submit</button>
             </form>
 
 
