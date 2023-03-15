@@ -1,3 +1,12 @@
+<?php include"db_connect.php";
+
+
+$sql = "SELECT * FROM user";
+
+$result=$conn->query($sql);
+?>
+
+<section>
 <table class="table table-bordered table-hover">
   <thead>
     <tr>
@@ -11,6 +20,14 @@
     </tr>
   </thead>
   <tbody>
+
+  <?php
+  if ($result->num_rows > 0) {
+
+$num = 0;
+while ($row = $result->fetch_assoc()) {
+  ?>
+
     <tr>
       <th scope="row">1</th>
       <td>1</td>
@@ -24,6 +41,10 @@
         <button class="btn btn-danger">Delete</button>
       </td>
     </tr>
-    <!-- Add more rows as needed -->
+    <?php
+}
+  }
+  ?>
   </tbody>
 </table>
+</section>
