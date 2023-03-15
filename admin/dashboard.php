@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Admin Dashboard</title>
 	<!-- Bootstrap CSS -->
@@ -16,19 +17,33 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+				<ul class="navbar-nav mx-auto">
+				<button class="btn btn-secondary mx-4" type="button">
+							Dashboard
+						</button>
+					<li class="nav-item mx-4">
+						<button class="btn btn-secondary " type="button">
+							User
+						</button>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Users</a>
+					<li class="nav-item mx-4">
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+								Category
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li><a class="dropdown-item" href="#">Appetizer</a></li>
+								<li><a class="dropdown-item" href="#">Main Course</a></li>
+								<li><a class="dropdown-item" href="#">Dessert</a></li>
+								<li><a class="dropdown-item" href="#">Beverage</a></li>
+								<li><a class="dropdown-item" href="#">Offer</a></li>
+
+							</ul>
+						</div>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Post</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Orders</a>
-					</li>
+					<button class="btn btn-secondary mx-4" type="button">
+							Order
+						</button>
 				</ul>
 			</div>
 		</div>
@@ -41,4 +56,5 @@
 	<!-- Bootstrap JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
