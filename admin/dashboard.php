@@ -18,32 +18,27 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
-				<button class="btn btn-secondary mx-4" type="button">
-							Dashboard
-						</button>
-					<li class="nav-item mx-4">
-						<button class="btn btn-secondary " type="button">
-							User
-						</button>
-					</li>
-					<li class="nav-item mx-4">
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-								Category
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><a class="dropdown-item" href="#">Appetizer</a></li>
-								<li><a class="dropdown-item" href="#">Main Course</a></li>
-								<li><a class="dropdown-item" href="#">Dessert</a></li>
-								<li><a class="dropdown-item" href="#">Beverage</a></li>
-								<li><a class="dropdown-item" href="#">Offer</a></li>
-
-							</ul>
-						</div>
-					</li>
 					<button class="btn btn-secondary mx-4" type="button">
+						Dashboard
+					</button>
+					<li class="nav-item mx-4">
+						<a href="user.php"><button class="btn btn-secondary " type="button">
+								User
+							</button></a>
+					</li>
+					<li class="nav-item mx-4">
+
+						<a href="post_category.php">
+							 <button class="btn btn-secondary " type="button">
+								All Post
+							</button>
+						</a>
+
+
+					</li>
+					<a href="order.php"><button class="btn btn-secondary mx-4" type="button">
 							Order
-						</button>
+						</button></a>
 				</ul>
 			</div>
 		</div>
@@ -53,8 +48,7 @@
 		<h1>Dashboard</h1>
 		<p>Welcome to the admin dashboard!</p>
 	</div>
-	<!-- Bootstrap JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
