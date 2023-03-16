@@ -6,7 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <!-- Latest version of jQuery from a CDN -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 
 <body>
@@ -29,8 +35,28 @@
                   <label for="password" class="form-label ">Password</label>
                   <input type="password" class="form-control" id="password" placeholder="*******">
                 </div>
-                <p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p>
-                <div class="d-grid">
+                <!-- HTML code for the link -->
+                <p class="small"><a id="forgot-password-link" class="text-primary" href="#">Forgot password?</a></p>
+
+                <!-- HTML code for the card to be shown -->
+                <div id="try-to-remember-card" class="card" style="display:none;">
+                  <div class="card-body">
+                    <h5 class="card-title ">Relax! Try to remember. If you still can't remember, you may need to see a doctor who specializes in mental illness.   </h5>
+                   
+                  </div>
+                </div>
+
+                <!-- JavaScript/jQuery code to show/hide the card -->
+                <script>
+                  $(document).ready(function() {
+                    $("#forgot-password-link").click(function(e) {
+                      e.preventDefault(); // prevent the link from redirecting to another page
+                      $("#try-to-remember-card").show(); // show the card
+                    });
+                  });
+                </script>
+
+                <div class="d-grid mt-2">
                   <button class="btn btn-outline-dark" type="submit">Login</button>
                 </div>
               </form>

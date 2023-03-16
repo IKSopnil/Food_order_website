@@ -1,47 +1,58 @@
-<?php include"db_connect.php";
+<?php include "db_connect.php";
 
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 <?php include "navbar.php";
-
-
+?>
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $user_email = $_POST['email'];
 
-  // Retrieve form data
-  $user_name = $_POST["name"];
-  $user_address = $_POST["address"];
-  $user_email = $_POST["email"];
-  $user_password = $_POST["password"];
-  $phone = $_POST["phone"];
+  // Check if email already exists
+  $sql = "SELECT COUNT(*) as count FROM users WHERE user_email = '$user_email'";
+  $result = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_assoc($result);
 
-
-   // Check if passwords match
-   $confirm_password = $_POST["confirm_password"];
-   if ($user_password !== $confirm_password) {
-     $password_match_error = "Passwords do not match.";
-   } else {
-  // Insert data into database
-  $sql = "INSERT INTO users (user_name, user_address, user_email,user_password,phone) VALUES ('$user_name', '$user_address', '$user_email','$user_password','$phone')";
-
-
-  if (mysqli_query($conn, $sql)) {
-    echo "Data inserted successfully";
+  if ($row['count'] > 0) {
+    // Email already exists, show error message
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    This email is already registered!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
   } else {
-    echo "Error inserting data: " . mysqli_error($conn);
+    // Retrieve form data
+    $user_name = $_POST["name"];
+    $user_address = $_POST["address"];
+    $user_password = $_POST["password"];
+    $phone = $_POST["phone"];
+
+    // Check if passwords match
+    if ($user_password === $_POST["confirm_password"]) {
+      // Insert data into database
+      $sql = "INSERT INTO users (user_name, user_address, user_email, user_password, phone) 
+              VALUES ('$user_name', '$user_address', '$user_email', '$user_password', '$phone')";
+
+      if ($conn->query($sql) === TRUE) {
+        echo '<div class="alert alert-success" role="alert">
+          Your account has been successfully created!
+        </div>';
+      } else {
+        echo '<div class="alert alert-danger" role="alert">
+          Error inserting data: ' . $conn->error . '
+        </div>';
+      }
+    } else {
+      // Passwords don't match, show error message
+      echo '<div class="alert alert-danger" role="alert">
+        Passwords do not match.
+      </div>';
+    }
   }
 }
-
-}
-
-
-// Display password match error message if set
-if (isset($password_match_error)) {
-  echo '<div class="alert alert-danger">' . $password_match_error . '</div>';
-}
-
 ?>
+
 
 <section class="" style="background-color: #eee;">
   <div class="container ">
@@ -58,7 +69,7 @@ if (isset($password_match_error)) {
 
 
 
-                <form class="mx-1 mx-md-4" method="post">
+                <form class="mx-1 mx-md-4" method="POST">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i style="margin-bottom: 10%;" class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -101,7 +112,7 @@ if (isset($password_match_error)) {
 
 
 
-                
+
 
               </div>
               <div class="col-lg-6 ">
@@ -110,7 +121,7 @@ if (isset($password_match_error)) {
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="email" id="" name="email"  required class="form-control" />
+                    <input type="email" id="" name="email" required class="form-control" placeholder="example@gmail.com" />
                     <label class="form-label" for="">Your Email</label>
                   </div>
                 </div>
@@ -118,7 +129,7 @@ if (isset($password_match_error)) {
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-lock fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="password" id="" name="password"required class="form-control" />
+                    <input type="password" id="" name="password" required class="form-control" />
                     <label class="form-label" for="">Password</label>
                   </div>
                 </div>
@@ -126,7 +137,7 @@ if (isset($password_match_error)) {
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-key fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="password" id=""required class="form-control" />
+                    <input type="password" id="" name="confirm_password" required class="form-control" />
                     <label class="form-label" for="">Repeat your password</label>
                   </div>
                 </div>
