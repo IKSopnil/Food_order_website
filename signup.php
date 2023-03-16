@@ -1,7 +1,48 @@
+<?php include"db_connect.php";
+
+?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-<?php include "navbar.php" ?>
+<?php include "navbar.php";
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  // Retrieve form data
+  $user_name = $_POST["name"];
+  $user_address = $_POST["address"];
+  $user_email = $_POST["email"];
+  $user_password = $_POST["password"];
+  $phone = $_POST["phone"];
+
+
+   // Check if passwords match
+   $confirm_password = $_POST["confirm_password"];
+   if ($user_password !== $confirm_password) {
+     $password_match_error = "Passwords do not match.";
+   } else {
+  // Insert data into database
+  $sql = "INSERT INTO users (user_name, user_address, user_email,user_password,phone) VALUES ('$user_name', '$user_address', '$user_email','$user_password','$phone')";
+
+
+  if (mysqli_query($conn, $sql)) {
+    echo "Data inserted successfully";
+  } else {
+    echo "Error inserting data: " . mysqli_error($conn);
+  }
+}
+
+}
+
+
+// Display password match error message if set
+if (isset($password_match_error)) {
+  echo '<div class="alert alert-danger">' . $password_match_error . '</div>';
+}
+
+?>
+
 <section class="" style="background-color: #eee;">
   <div class="container ">
     <div class="row d-flex justify-content-center align-items-center p-5">
@@ -17,12 +58,12 @@
 
 
 
-                <form class="mx-1 mx-md-4">
+                <form class="mx-1 mx-md-4" method="post">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i style="margin-bottom: 10%;" class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="" class="form-control" />
+                      <input type="text" id="" name="name" class="form-control" required />
                       <label class="form-label" for="">Your Name</label>
                     </div>
                   </div>
@@ -30,7 +71,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i style="margin-bottom: 10%;" class="fas fa-location-dot fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                      <input type="text" class="form-control" name="address" id="inputAddress" required placeholder="1234 Main St">
                       <label for="inputAddress">Address</label>
                     </div>
                   </div>
@@ -60,7 +101,7 @@
 
 
 
-                </form>
+                
 
               </div>
               <div class="col-lg-6 ">
@@ -69,7 +110,7 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="email" id="" class="form-control" />
+                    <input type="email" id="" name="email"  required class="form-control" />
                     <label class="form-label" for="">Your Email</label>
                   </div>
                 </div>
@@ -77,7 +118,7 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-lock fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="password" id="" class="form-control" />
+                    <input type="password" id="" name="password"required class="form-control" />
                     <label class="form-label" for="">Password</label>
                   </div>
                 </div>
@@ -85,7 +126,7 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-key fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="password" id="" class="form-control" />
+                    <input type="password" id=""required class="form-control" />
                     <label class="form-label" for="">Repeat your password</label>
                   </div>
                 </div>
@@ -93,7 +134,7 @@
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i style="margin-bottom: 10%;" class="fas fa-phone fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
-                    <input type="text" id="phone" class="form-control" placeholder="+88" />
+                    <input type="text" id="phone" name="phone" required class="form-control" placeholder="+88" />
                     <label class="form-label" for="phone">Phone</label>
                   </div>
                 </div>
@@ -111,6 +152,7 @@
             <div class="text-center mb-3">
               <button class="btn btn-outline-dark w-50" type="submit">Sign-Up</button>
             </div>
+            </form>
             <p class="mb-0  text-center">Have an account? <a href="login.php" class="text-primary fw-bold">Login</a></p>
 
           </div>
