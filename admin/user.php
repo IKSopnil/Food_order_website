@@ -1,7 +1,8 @@
+<?php include "panelnavbar.php";?>
 <?php include"db_connect.php";
 
 
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM users";
 
 $result=$conn->query($sql);
 ?>
@@ -31,11 +32,11 @@ while ($row = $result->fetch_assoc()) {
     <tr>
       <th scope="row">1</th>
       <td>1</td>
-      <td>john</td>
-      <td>john.doe@example.com</td>
-      <td>sdsadasd</td>
-      <td>123street</td>
-      <td>123</td>
+      <td><?php echo $row['user_name'] ?></td>
+      <td><?php echo $row['user_email'] ?></td>
+      <td><?php echo $row['user_password'] ?></td>
+      <td><?php echo $row['user_address'] ?></td>
+      <td><?php echo $row['phone'] ?></td>
       <td>
         <button class="btn btn-primary">Edit</button>
         <button class="btn btn-danger">Delete</button>
