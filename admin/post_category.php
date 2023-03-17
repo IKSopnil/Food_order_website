@@ -10,53 +10,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 </head>
-<section>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto ">
-                    <button class="btn btn-secondary mx-4" type="button">
-                        Dashboard
-                    </button>
-                    <li class="nav-item mx-4">
-                        <a href="user.php"><button class="btn btn-secondary " type="button">
-                                User
-                            </button></a>
-                    </li>
-                    <li class="nav-item mx-4">
+   <?php include "panelnavbar.php"?>
 
-                        <a href="post_category.php">
-                            <button class="btn btn-secondary " type="button">
-                                All Post
-                            </button>
-                        </a>
-
-
-                    </li>
-                    <a href="order.php"><button class="btn btn-secondary mx-4" type="button">
-                            Order
-                        </button></a>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</section>
 <section>
     <div class="container my-5">
         <!-- Example single danger button -->
         <div class="form-outline">
             <form method="POST" action="">
                 <div class="form-outline">
-                    <label for="">Filter:</label>
+                    <label for=""><h6>Select Category:</h6> </label>
                     <select id="inputState" name="inputState" class="form-control my-2 text-center justify-content-center w-50">
-                        <option value="all" >All Post</option>
-                        <option value="appetizer" selected>Appetizer</option>
-                        <option value="maincourse">Main Course</option>
-                        <option value="dessert">Dessert</option>
-                        <option value="beverage">Beverage</option>
-                        <option value="offer">Offer</option>
+                        <option value="all" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'all') echo 'selected'; ?>>All Post</option>
+                        <option value=""><hr class="dropdown-divider"></option>
+                        <option value="appetizer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'appetizer') echo 'selected'; ?>>Appetizer</option>
+                        <option value="maincourse" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'maincourse') echo 'selected'; ?>>Main Course</option>
+                        <option value="dessert" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'dessert') echo 'selected'; ?>>Dessert</option>
+                        <option value="beverage" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'beverage') echo 'selected'; ?>>Beverage</option>
+                        <option value="offer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'offer') echo 'selected'; ?>>Offer</option>
                     </select>
+
                 </div>
                 <small>(Press submit after selecting option.)<br></small>
                 <button type="submit" class="btn btn-success my-2">Submit</button>
