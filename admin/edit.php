@@ -76,7 +76,43 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
+<style>
+    .form-group {
+    margin-bottom: 20px;
+}
 
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0069d9;
+}
+
+</style>
                
 <?php
     } else {
