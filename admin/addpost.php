@@ -1,3 +1,4 @@
+<?php include "panelnavbar.php" ?>
 <?php include "db_connect.php" ?>
 
 <head>
@@ -18,7 +19,7 @@
 
 
 </head>
-<?php include "panelnavbar.php" ?>
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['inputState'])) {
     // Get form data
