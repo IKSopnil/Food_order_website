@@ -11,7 +11,7 @@
 
 </head>
 
-   <?php include "panelnavbar.php"?>
+<?php include "panelnavbar.php" ?>
 
 <section>
     <div class="container my-5">
@@ -19,7 +19,9 @@
         <div class="form-outline">
             <form method="POST" action="">
                 <div class="form-outline">
-                    <label for=""><h6>Select Category:</h6> </label>
+                    <label for="">
+                        <h6>Select Category:</h6>
+                    </label>
                     <select id="inputState" name="inputState" class="form-control my-2 text-center justify-content-center w-50">
                         <option value="all" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'all') echo 'selected'; ?>>All Post</option>
                         <option value="appetizer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'appetizer') echo 'selected'; ?>>Appetizer</option>
@@ -87,7 +89,7 @@
 
 
                         ?>
-                        <input type="hidden" name="category" value="<?php echo $selectedValue; ?>">
+                                    <input type="hidden" name="category" value="<?php echo $selectedValue; ?>">
 
                                     <tr class="">
                                         <td><?php echo ++$num ?></td>
@@ -95,7 +97,8 @@
                                         <td><img src="<?php echo $row['image'] ?>" alt="Product 1" style="max-width: 100px;"></td>
                                         <td><?php echo $row['price'] ?></td>
                                         <td>
-                                            <a href="#" class="btn btn-primary">Edit</a>
+                                        <a href="edit.php?id=<?php echo $row['id']; ?>&category=<?php echo $selectedValue; ?>" class="btn btn-primary">Edit</a>
+
                                             <a href="#" class="btn btn-danger" onclick="deleteRow(<?php echo $row['id']; ?>)">Delete</a>
 
                                         </td>
@@ -105,22 +108,22 @@
                                 }
                             }
                         } ?>
-<script>
-    function deleteRow(id) {
-        var category = document.getElementsByName('category')[0].value;
-        if (confirm('Are you sure you want to delete this row?')) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    window.location.reload();
-                }
-            };
-            xhttp.open("POST", "delete.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("id=" + id + "&category=" + category);
-        }
-    }
-</script>
+                        <script>
+                            function deleteRow(id) {
+                                var category = document.getElementsByName('category')[0].value;
+                                if (confirm('Are you sure you want to delete this row?')) {
+                                    var xhttp = new XMLHttpRequest();
+                                    xhttp.onreadystatechange = function() {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            window.location.reload();
+                                        }
+                                    };
+                                    xhttp.open("POST", "delete.php", true);
+                                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                    xhttp.send("id=" + id + "&category=" + category);
+                                }
+                            }
+                        </script>
 
                     </tbody>
                 </table>

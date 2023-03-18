@@ -7,7 +7,7 @@
   
 
 </head>
-<nav class=" navbar-expand-lg  navbar navbar-light bg-light py-lg-4" >
+<nav class=" navbar-expand-lg  navbar navbar-light bg-light py-lg-4  " >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Admin Panel</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,3 +52,5 @@
         
 	</nav>
  
+
+	
