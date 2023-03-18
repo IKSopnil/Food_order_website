@@ -22,7 +22,6 @@
                     <label for=""><h6>Select Category:</h6> </label>
                     <select id="inputState" name="inputState" class="form-control my-2 text-center justify-content-center w-50">
                         <option value="all" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'all') echo 'selected'; ?>>All Post</option>
-                        <option value=""><hr class="dropdown-divider"></option>
                         <option value="appetizer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'appetizer') echo 'selected'; ?>>Appetizer</option>
                         <option value="maincourse" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'maincourse') echo 'selected'; ?>>Main Course</option>
                         <option value="dessert" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'dessert') echo 'selected'; ?>>Dessert</option>
@@ -66,17 +65,18 @@
             union SELECT * FROM desserts
             union SELECT * FROM beverages
             union SELECT * FROM offer
+            ORDER BY title ASC
             ";
                             } elseif ($selectedValue === "appetizer") {
-                                $sql = "SELECT * FROM appetizers";
+                                $sql = "SELECT * FROM appetizers ORDER BY title ASC";
                             } elseif ($selectedValue === "maincourse") {
-                                $sql = "SELECT * FROM main_courses";
+                                $sql = "SELECT * FROM main_courses ORDER BY title ASC";
                             } elseif ($selectedValue === "dessert") {
-                                $sql = "SELECT * FROM desserts";
+                                $sql = "SELECT * FROM desserts ORDER BY title ASC";
                             } elseif ($selectedValue === "beverage") {
-                                $sql = "SELECT * FROM beverages";
+                                $sql = "SELECT * FROM beverages ORDER BY title ASC";
                             } elseif ($selectedValue === "offer") {
-                                $sql = "SELECT * FROM offer";
+                                $sql = "SELECT * FROM offer ORDER BY title ASC";
                             }
                             $result = $conn->query($sql);
 
@@ -87,6 +87,8 @@
 
 
                         ?>
+                        <input type="hidden" name="category" value="<?php echo $selectedValue; ?>">
+
                                     <tr class="">
                                         <td><?php echo ++$num ?></td>
                                         <td><?php echo $row['title'] ?></td>
@@ -94,7 +96,8 @@
                                         <td><?php echo $row['price'] ?></td>
                                         <td>
                                             <a href="#" class="btn btn-primary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                            <a href="#" class="btn btn-danger" onclick="deleteRow(<?php echo $row['id']; ?>)">Delete</a>
+
                                         </td>
                                     </tr>
 
@@ -102,6 +105,22 @@
                                 }
                             }
                         } ?>
+<script>
+    function deleteRow(id) {
+        var category = document.getElementsByName('category')[0].value;
+        if (confirm('Are you sure you want to delete this row?')) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    window.location.reload();
+                }
+            };
+            xhttp.open("POST", "delete.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("id=" + id + "&category=" + category);
+        }
+    }
+</script>
 
                     </tbody>
                 </table>

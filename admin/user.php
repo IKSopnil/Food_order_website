@@ -31,7 +31,7 @@ while ($row = $result->fetch_assoc()) {
 
     <tr>
       <th scope="row">1</th>
-      <td>1</td>
+      <td><?php echo ++$num ?></td>
       <td><?php echo $row['user_name'] ?></td>
       <td><?php echo $row['user_email'] ?></td>
       <td><?php echo $row['user_password'] ?></td>
