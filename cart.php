@@ -1,8 +1,3 @@
-<?php include "navbar.php"
-
-?>
-
-
 <?php
 session_start();
 
@@ -22,7 +17,22 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+<?php include "navbar.php"
 
+?>
+<?php
+      if (isset($_POST['confirm_order'])) {
+        // Function to trigger when Confirm Order button is clicked
+        if (!isset($_SESSION['user_id'])) {
+
+          echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong>You have to log in first to order.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+      
+        }
+      }
+      ?>
 <style>
   #cart {
     background-color: #eee;
@@ -107,8 +117,13 @@ session_start();
       ?>
       <div class="cart-total my-4">
         <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
-        <button class="btn btn-outline-success mb-3">Confirm Order</button>
+        <form method="post">
+          <button type="submit" name="confirm_order" class="btn btn-outline-success mb-3">Confirm Order</button>
+        </form>
       </div>
+
+      
+
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
 
