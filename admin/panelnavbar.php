@@ -10,8 +10,8 @@ if (!isset($_SESSION['username'])) {
 
 <head>
 	<title>Admin Dashboard</title>
-	 <!--font awesome-->
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!--font awesome-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 	<!--bootstrap-->
@@ -60,23 +60,24 @@ if (!isset($_SESSION['username'])) {
 			</ul>
 			<ul class="navbar-nav mx-5 px-4">
 				<?php if (isset($_SESSION['username'])) { ?>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="far fa-user-circle"></i>
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="#"></a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="logout.php">Logout</a></li>
-						</ul>
-					</li>
-				<?php
-			 } 
-			 ?>
-			</ul>
 
+					<div class="btn-group dropstart">
+						<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+							<i class="far fa-user-circle"></i>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+							<li><a class="dropdown-item" href="logout.php">Logout</a></li>
+
+						</ul>
+					</div>
+
+
+
+
+				<?php
+				}
+				?>
+			</ul>
 
 		</div>
 
