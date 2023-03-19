@@ -27,17 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_address = $_POST["address"];
     $user_password = $_POST["password"];
     $phone = $_POST["phone"];
+    // Hash the password
+$hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+
 
     // Check if passwords match
     if ($user_password === $_POST["confirm_password"]) {
       // Insert data into database
       $sql = "INSERT INTO users (user_name, user_address, user_email, user_password, phone) 
-              VALUES ('$user_name', '$user_address', '$user_email', '$user_password', '$phone')";
+              VALUES ('$user_name', '$user_address', '$user_email', '$hashed_password', '$phone')";
 
       if ($conn->query($sql) === TRUE) {
         echo '<div class="alert alert-success" role="alert">
           Your account has been successfully created!
         </div>';
+        echo '<meta http-equiv="refresh" content="1;url=signup.php">';
+            exit();
       } else {
         echo '<div class="alert alert-danger" role="alert">
           Error inserting data: ' . $conn->error . '

@@ -1,12 +1,22 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['username'])) {
+  // User is not logged in, redirect to the login page
+  header("Location: login.php");
+  exit();
+}
+?>
+<?php include 'panelnavbar.php';?>
+<?php
 include "db_connect.php";
 if (isset($_GET['id']) && isset($_GET['category'])) {
     $id = $_GET['id'];
     $category = $_GET['category'];
 
     switch ($category) {
-        case'all':
-            $sql="SELECT * FROM appetizers 
+        case 'all':
+            $sql = "SELECT * FROM appetizers 
             WHERE id=$id
             UNION ALL
             SELECT * FROM main_courses 
@@ -47,8 +57,9 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        ?>
-        
+?>
+<section class="container my-4">
+    <h1 class="text-center">Edit Your Post</h1>
         <!-- Display the form to edit the data -->
         <form method="post" action="update.php" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -76,44 +87,44 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
-<style>
-    .form-group {
-    margin-bottom: 20px;
-}
+</section>
+        <style>
+            .form-group {
+                margin-bottom: 20px;
+            }
 
-label {
-    font-weight: bold;
-}
+            label {
+                font-weight: bold;
+            }
 
-input[type="text"],
-input[type="number"],
-input[type="file"] {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
+            input[type="text"],
+            input[type="number"],
+            input[type="file"] {
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 10px;
+                width: 100%;
+                box-sizing: border-box;
+            }
 
-input[type="file"] {
-    margin-top: 10px;
-}
+            input[type="file"] {
+                margin-top: 10px;
+            }
 
-.btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+            from .btn {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
 
-.btn:hover {
-    background-color: #0069d9;
-}
+            .btn:hover {
+                background-color: #0069d9;
+            }
+        </style>
 
-</style>
-               
 <?php
     } else {
         echo "No results found";

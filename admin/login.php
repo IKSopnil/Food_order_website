@@ -12,6 +12,34 @@
 
 </head>
 
+<?php 
+include "db_connect.php";
+
+if (isset($_POST['username']) && isset($_POST['password'])) {
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+
+$sql = "SELECT * FROM admin WHERE admin_username='$username' AND admin_password='$password'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // Valid login credentials
+  // Start the session and redirect to the dashboard
+  session_start();
+  $_SESSION['username'] = $username;
+  header('Location: dashboard.php');
+} else {
+  // Invalid login credentials
+  // Display an error message
+  echo '<div class="alert alert-danger" role="alert">
+  Invalid username or password
+</div>';
+}
+
+}
+?>
   <body>
    
     <div class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #eee;">
@@ -20,19 +48,20 @@
           <div class="col-12 col-md-8 col-lg-6">
             <div class="card bg-white">
               <div class="card-body p-5">
-                <form class="mb-3 mt-md-4">
+                <form class="mb-3 mt-md-4" method="POST" >
                   <h2 class="fw-bold mb-2  ">Admin Login</h2>
                   
                   <p class=" mb-3"> Please enter your Username and password!</p>
                   <div class="mb-3">
                     <label for="username" class="form-label ">Username</label>
-                    <input type="name" class="form-control" id="Username" placeholder="name">
+                    <input type="name" name="username" class="form-control" id="username" placeholder="name">
+
                   </div>
                   <div class="mb-3">
-                    <label for="password" class="form-label ">Password</label>
+                    <label for="password" class="form-label " >Password</label>
                    
                     <div class="input-group">
-                  <input type="password" class="form-control" id="password" required>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
                   <span class="input-group-text"><i class="fas fa-eye"></i></span>
                 </div>
                   </div>
@@ -69,3 +98,7 @@
       this.querySelector('i').classList.toggle('fa-eye-slash');
     });
   </script>
+
+<?php if (isset($error)): ?>
+  <p><?php echo $error; ?></p>
+<?php endif; ?>
