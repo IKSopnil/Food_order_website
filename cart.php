@@ -31,6 +31,12 @@ session_start();
         </div>';
       
         }
+        else{
+          echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong>Your order has been accepted.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+        }
       }
       ?>
 <style>
