@@ -68,12 +68,12 @@ session_start();
                 <p class=" mb-5">Please enter your login and password!</p>
                 <div class="mb-3">
                   <label for="email" class="form-label ">Email address</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                  <input type="email" required class="form-control" name="email" id="email" placeholder="name@example.com">
                 </div>
                 <label for="password" class="form-label ">Password</label>
                 <div class="mb-3 d-flex">
                   
-                  <input type="password" class="form-control" name="password" id="password" placeholder="*******">
+                  <input type="password" required class="form-control" name="password" id="password" placeholder="*******">
                   <span class="input-group-text"><i class="fas fa-eye"></i></span>
                 </div>
                 <!-- HTML code for the link -->

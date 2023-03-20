@@ -51,7 +51,7 @@
                     <a class="nav-link " href="about.php">About</a>
                   </li>
                   <li class="nav-item mx-4">
-                    <a class="nav-link " href="contract.php">Contract</a>
+                    <a class="nav-link " href="contact.php">Contact</a>
                   </li>
 
                 </ul>

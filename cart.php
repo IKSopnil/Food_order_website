@@ -21,6 +21,7 @@ session_start();
 
 ?>
 <?php
+if (!empty($_SESSION['cart'])) {
       if (isset($_POST['confirm_order'])) {
         // Function to trigger when Confirm Order button is clicked
         if (!isset($_SESSION['user_id'])) {
@@ -38,6 +39,10 @@ session_start();
         </div>';
         }
       }
+    }
+    else{
+      
+    }
       ?>
 <style>
   #cart {
