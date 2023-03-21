@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_password = $_POST["password"];
     $phone = $_POST["phone"];
     // Hash the password
-$hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
 
 
     // Check if passwords match
@@ -42,7 +42,7 @@ $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
           Your account has been successfully created!
         </div>';
         echo '<meta http-equiv="refresh" content="1;url=signup.php">';
-            exit();
+        exit();
       } else {
         echo '<div class="alert alert-danger" role="alert">
           Error inserting data: ' . $conn->error . '

@@ -117,16 +117,16 @@ $num_items_in_cart = count($_SESSION['cart']);
           <div class=" col-lg-4 d-flex justify-content-center align-item-center ">
             <div class="card h-100 text-center ">
 
-            <?php
-if (strpos($row['image'], 'http') !== false) {
-    // If the image is a URL
-    $image_url = $row['image'];
-} else {
-    // If the image is a file
-    $image_url = 'admin/' . $row['image'];
-}
-?>
-<img src="<?php echo $image_url ?>" class="card-img-top" alt="...">
+              <?php
+              if (strpos($row['image'], 'http') !== false) {
+                // If the image is a URL
+                $image_url = $row['image'];
+              } else {
+                // If the image is a file
+                $image_url = 'admin/' . $row['image'];
+              }
+              ?>
+              <img src="<?php echo $image_url ?>" class="card-img-top" alt="...">
 
               <div class="card-body">
                 <h5 class="card-title"><?php echo $row['title'] ?></h5>

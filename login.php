@@ -6,7 +6,7 @@ session_start();
 
 
 ?>
-<?php include "navbar.php"?>
+<?php include "navbar.php" ?>
 
 
 
@@ -25,36 +25,35 @@ session_start();
 </head>
 
 <?php
-    
-    if(count($_POST)>0) {
-       
-        $result = mysqli_query($conn,"SELECT * FROM users WHERE user_email='" . $_POST["email"] . "' and user_password = '". $_POST["password"]."'");
-        $row  = mysqli_fetch_array($result);
-        if(is_array($row)) {
-        $_SESSION["user_id"] = $row['user_id'];
-        $_SESSION["user_name"] = $row['user_name'];
-        } else {
-         echo '<div class="alert alert-danger" role="alert">
+
+if (count($_POST) > 0) {
+
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='" . $_POST["email"] . "' and user_password = '" . $_POST["password"] . "'");
+  $row  = mysqli_fetch_array($result);
+  if (is_array($row)) {
+    $_SESSION["user_id"] = $row['user_id'];
+    $_SESSION["user_name"] = $row['user_name'];
+  } else {
+    echo '<div class="alert alert-danger" role="alert">
          Invalid password. 
        </div>';
-       echo '<meta http-equiv="refresh" content="1;url=login.php">';
-                exit();
-       
-        }
-    }
-    if(isset($_SESSION["user_id"])) {
-    echo  '<div class="alert alert-success" role="alert">
+    echo '<meta http-equiv="refresh" content="1;url=login.php">';
+    exit();
+  }
+}
+if (isset($_SESSION["user_id"])) {
+  echo  '<div class="alert alert-success" role="alert">
     Welcome, You are logged in. 
   </div>';
   echo '<meta http-equiv="refresh" content="1;url=index.php">';
-                exit();
-    }
+  exit();
+}
 ?>
 
 <body>
 
 
-  
+
 
   <div class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #eee;">
     <div class="container">
@@ -72,7 +71,7 @@ session_start();
                 </div>
                 <label for="password" class="form-label ">Password</label>
                 <div class="mb-3 d-flex">
-                  
+
                   <input type="password" required class="form-control" name="password" id="password" placeholder="*******">
                   <span class="input-group-text"><i class="fas fa-eye"></i></span>
                 </div>
@@ -82,8 +81,8 @@ session_start();
                 <!-- HTML code for the card to be shown -->
                 <div id="try-to-remember-card" class="card" style="display:none;">
                   <div class="card-body">
-                    <h5 class="card-title ">Relax! Try to remember. If you still can't remember, you may need to see a doctor who specializes in mental illness.   </h5>
-                   
+                    <h5 class="card-title ">Relax! Try to remember. If you still can't remember, you may need to see a doctor who specializes in mental illness. </h5>
+
                   </div>
                 </div>
 
@@ -120,13 +119,13 @@ session_start();
 </body>
 
 <script>
-    // Show/hide password toggle
-    const togglePassword = document.querySelector('.input-group-text');
-    const password = document.querySelector('#password');
+  // Show/hide password toggle
+  const togglePassword = document.querySelector('.input-group-text');
+  const password = document.querySelector('#password');
 
-    togglePassword.addEventListener('click', function() {
-      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-      password.setAttribute('type', type);
-      this.querySelector('i').classList.toggle('fa-eye-slash');
-    });
-  </script>
+  togglePassword.addEventListener('click', function() {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    this.querySelector('i').classList.toggle('fa-eye-slash');
+  });
+</script>

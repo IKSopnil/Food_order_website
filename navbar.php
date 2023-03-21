@@ -64,22 +64,22 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
             <?php if (isset($_SESSION["user_id"])) { ?>
               <div class="dropdown">
-  <button class="btn dropdown-toggle"style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <i class="fas fa-user "style="color: white;"></i>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Profile</a>
-    <a class="dropdown-item" href="#">Settings</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="logout.php">Logout</a>
-    
-  </div>
-</div>
-<script>
-$(document).ready(function(){
-  $('.dropdown-toggle').dropdown();
-});
-</script>
+                <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user " style="color: white;"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="logout.php">Logout</a>
+
+                </div>
+              </div>
+              <script>
+                $(document).ready(function() {
+                  $('.dropdown-toggle').dropdown();
+                });
+              </script>
 
 
             <?php } else { ?>

@@ -8,4 +8,3 @@ if (isset($_POST['key'])) {
 
 header("Location: cart.php");
 exit;
-?>

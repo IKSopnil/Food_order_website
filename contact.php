@@ -1,4 +1,5 @@
-<?php session_start()?>
+<?php session_start() ?>
+
 <head>
     <!--bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -53,9 +54,11 @@
     input[type=submit]:hover {
         background-color: #45a049;
     }
-    .contract{
+
+    .contract {
         background-color: #eee;
     }
+
     .contract_head {
         height: 20vh;
         background-color: #fff;
@@ -66,44 +69,42 @@
 </style>
 </head>
 <?php
-      if (isset($_POST['send'])) {
-        // Function to trigger when Confirm Order button is clicked
-        if (!isset($_SESSION['user_id'])) {
+if (isset($_POST['send'])) {
+    // Function to trigger when Confirm Order button is clicked
+    if (!isset($_SESSION['user_id'])) {
 
-          echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+        echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
           <strong>You have to log in first to order.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-      
-        }
-        else{
-          echo '<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+    } else {
+        echo '<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
           <strong>Your message has been sent.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-        }
-      }
-      ?>
+    }
+}
+?>
 <section class="contract d-flex justify-content-center">
     <div class=" text-center   mx-auto">
-        <div class="contract_head container text-center my-4 justify-content-center mt-0 pt-5 bg-white" >
+        <div class="contract_head container text-center my-4 justify-content-center mt-0 pt-5 bg-white">
             <h3>Contract Us </h3>
             <p>Contact us for any questions or concerns you may have.</p>
 
         </div>
-        
+
         <div class=" container row bg-white my-5">
-        <h3 class="my-5">Message Us</h3>
+            <h3 class="my-5">Message Us</h3>
             <div class="col-lg-6  justify-content-center align-items-center mt-4">
                 <p class="my-4">"Thank you for your interest in our company! We would love to hear from you. If you have any questions, comments, or feedback, please don't hesitate to get in touch with us using the form below. One of our representatives will get back to you as soon as possible.</p>
                 <p class="my-4">
-                Alternatively, you can reach us by phone or email. Our contact information can be found on the right-hand side of this page.
+                    Alternatively, you can reach us by phone or email. Our contact information can be found on the right-hand side of this page.
                 </p>
                 <p class="my-4">
-                We value your input and appreciate your business. Thank you for choosing us!
-                "</p>
+                    We value your input and appreciate your business. Thank you for choosing us!
+                    "</p>
             </div>
-            
+
             <div class="col-lg-6 justify-content-center my-2 mb-5">
                 <div>
                     <form class="text-start" method="post" action="#">
