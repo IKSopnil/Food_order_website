@@ -22,28 +22,24 @@ session_start();
 ?>
 <?php
 if (!empty($_SESSION['cart'])) {
-      if (isset($_POST['confirm_order'])) {
-        // Function to trigger when Confirm Order button is clicked
-        if (!isset($_SESSION['user_id'])) {
+  if (isset($_POST['confirm_order'])) {
+    // Function to trigger when Confirm Order button is clicked
+    if (!isset($_SESSION['user_id'])) {
 
-          echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+      echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
           <strong>You have to log in first to order.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-      
-        }
-        else{
-          echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
+    } else {
+      echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
           <strong>Your order has been accepted.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-        }
-      }
     }
-    else{
-      
-    }
-      ?>
+  }
+} else {
+}
+?>
 <style>
   #cart {
     background-color: #eee;
@@ -133,7 +129,7 @@ if (!empty($_SESSION['cart'])) {
         </form>
       </div>
 
-      
+
 
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
