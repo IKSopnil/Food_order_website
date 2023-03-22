@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
   // User is not logged in, redirect to the login page
   header("Location: login.php");
   exit();
@@ -13,7 +13,7 @@ if(!isset($_SESSION['username'])) {
 
 </head>
 <section class="container my-5">
-<h1 class="text-center mb-5">Pending Order</h1>
+  <h1 class="text-center mb-5">Pending Order</h1>
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
@@ -28,7 +28,7 @@ if(!isset($_SESSION['username'])) {
       </tr>
     </thead>
     <tbody>
-    <?php
+      <?php
       if ($result->num_rows > 0) {
 
         $num = 0;
@@ -45,10 +45,10 @@ if(!isset($_SESSION['username'])) {
             <td><?php echo $row['phone'] ?></td>
             <td><?php echo $row[''] ?></td>
             <td><?php echo $row['total'] ?></td>
-            
+
             <td>
               <form action="" method="post">
-               
+
                 <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
                 <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
               </form>

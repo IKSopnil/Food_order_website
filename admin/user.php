@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
   // User is not logged in, redirect to the login page
   header("Location: login.php");
   exit();
@@ -49,7 +49,7 @@ $result = $conn->query($sql);
             <td><?php echo $row['phone'] ?></td>
             <td>
               <form action="" method="post">
-               
+
                 <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
                 <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
               </form>
@@ -83,7 +83,7 @@ if (isset($_POST['delete'])) {
      User has been deleted !
 </div>';
     echo '<meta http-equiv="refresh" content="1;url=user.php">';
-            exit();
+    exit();
   } else {
     echo "Error deleting user: " . $conn->error;
   }

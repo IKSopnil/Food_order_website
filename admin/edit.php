@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])) {
-  // User is not logged in, redirect to the login page
-  header("Location: login.php");
-  exit();
+if (!isset($_SESSION['username'])) {
+    // User is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
 }
 ?>
-<?php include 'panelnavbar.php';?>
+<?php include 'panelnavbar.php'; ?>
 <?php
 include "db_connect.php";
 if (isset($_GET['id']) && isset($_GET['category'])) {
@@ -58,36 +58,36 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
         $row = $result->fetch_assoc();
 
 ?>
-<section class="container my-4">
-    <h1 class="text-center">Edit Your Post</h1>
-        <!-- Display the form to edit the data -->
-        <form method="post" action="update.php" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <input type="hidden" name="category" value="<?php echo $category; ?>">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['title']; ?>">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="<?php echo $row['description']; ?>">
-            </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" name="price" value="<?php echo $row['price']; ?>">
-            </div>
-            <div class="form-group">
-                <label for="discount">discount</label>
-                <input type="number" class="form-control" id="discount" name="discount" value="<?php echo $row['off_percentage']; ?>">
-            </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control-file" id="image" name="image">
-                <img src="<?php echo $row['image']; ?>" alt="Product Image" style="max-width: 100px;">
-            </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-</section>
+        <section class="container my-4">
+            <h1 class="text-center">Edit Your Post</h1>
+            <!-- Display the form to edit the data -->
+            <form method="post" action="update.php" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="category" value="<?php echo $category; ?>">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['title']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" value="<?php echo $row['description']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" value="<?php echo $row['price']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="discount">discount</label>
+                    <input type="number" class="form-control" id="discount" name="discount" value="<?php echo $row['off_percentage']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                    <img src="<?php echo $row['image']; ?>" alt="Product Image" style="max-width: 100px;">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </section>
         <style>
             .form-group {
                 margin-bottom: 20px;

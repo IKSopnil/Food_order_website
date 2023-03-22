@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])) {
-  // User is not logged in, redirect to the login page
-  header("Location: login.php");
-  exit();
+if (!isset($_SESSION['username'])) {
+    // User is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
 }
 ?>
 <?php include "db_connect.php";
@@ -106,7 +106,7 @@ if(!isset($_SESSION['username'])) {
                                         <td><img src="<?php echo $row['image'] ?>" alt="Product 1" style="max-width: 100px;"></td>
                                         <td><?php echo $row['price'] ?></td>
                                         <td>
-                                        <a href="edit.php?id=<?php echo $row['id']; ?>&category=<?php echo $selectedValue; ?>" class="btn btn-primary">Edit</a>
+                                            <a href="edit.php?id=<?php echo $row['id']; ?>&category=<?php echo $selectedValue; ?>" class="btn btn-primary">Edit</a>
 
                                             <a href="#" class="btn btn-danger" onclick="deleteRow(<?php echo $row['id']; ?>)">Delete</a>
 

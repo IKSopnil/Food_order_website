@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])) {
-  // User is not logged in, redirect to the login page
-  header("Location: login.php");
-  exit();
+if (!isset($_SESSION['username'])) {
+    // User is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
 }
 ?>
 <?php
@@ -25,7 +25,7 @@ if (isset($_POST['id']) && isset($_POST['category'])) {
     $target_file = $target_dir . basename($image);
 
     // Check if file already exists
-     
+
     // Check file size
     if ($_FILES["image"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
@@ -76,19 +76,19 @@ if (isset($_POST['id']) && isset($_POST['category'])) {
         image = '$image'
         WHERE id = $id;";
 
-if ($conn->multi_query($sql) === TRUE) {
-    // success message
-    echo '<div class="alert alert-success" role="alert">
+                if ($conn->multi_query($sql) === TRUE) {
+                    // success message
+                    echo '<div class="alert alert-success" role="alert">
             Your post has been successfully updated!
         </div>';
-        echo '<meta http-equiv="refresh" content="1;url=post_category.php">';
-        exit();
-} else {
-    // error message
-}
+                    echo '<meta http-equiv="refresh" content="1;url=post_category.php">';
+                    exit();
+                } else {
+                    // error message
+                }
 
                 break;
-            
+
             case 'appetizer':
                 $sql = "UPDATE appetizers SET title='$title', description='$description', price=$price, image='$target_file' WHERE id=$id";
                 break;
@@ -110,8 +110,8 @@ if ($conn->multi_query($sql) === TRUE) {
             echo '<div class="alert alert-success" role="alert">
             Your post has been successfully updated!
         </div>';
-        echo '<meta http-equiv="refresh" content="1;url=post_category.php">';
-        exit();
+            echo '<meta http-equiv="refresh" content="1;url=post_category.php">';
+            exit();
         } else {
             echo "Error updating record: " . $conn->error;
         }
