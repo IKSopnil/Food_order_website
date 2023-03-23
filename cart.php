@@ -35,6 +35,12 @@ if (!empty($_SESSION['cart'])) {
           <strong>Your order has been accepted.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
+        if (!empty($_SESSION['cart'])) {
+          // Store the cart data in the session
+          $_SESSION['cart_data'] = $_SESSION['cart'];
+          unset($_SESSION['cart']);
+        }
+        
     }
   }
 } else {

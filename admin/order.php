@@ -27,37 +27,29 @@ if (!isset($_SESSION['username'])) {
         <th scope="col">Actions</th>
       </tr>
     </thead>
+    
+    
     <tbody>
-      <?php
-      if ($result->num_rows > 0) {
+<?php
+if (isset($_SESSION['cart_data'])) {
+  // Display the cart data in the table
+  $num = 0;
+  foreach ($_SESSION['cart_data'] as $item) {
+    $num++;
+    echo "<tr>";
+    echo "<td>{$num}</td>";
+    echo "<td>{$_SESSION['user_name']}</td>";
+    echo "<td>{$_SESSION['user_email']}</td>";
+    echo "<td>{$_SESSION['user_address']}</td>";
+    echo "<td>{$_SESSION['phone']}</td>";
+    echo "<td>{$item['title']}</td>";
+    echo "<td>{$item['price']}</td>";
+    echo "<td></td>";
+    echo "</tr>";
+  }
+}
+?>
+</tbody>
 
-        $num = 0;
-        while ($row = $result->fetch_assoc()) {
-      ?>
-
-          <tr>
-
-            <td><?php echo ++$num ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-            <td><?php echo $row[''] ?></td>
-
-            <td>
-              <form action="" method="post">
-
-                <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
-                <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
-              </form>
-            </td>
-
-
-          </tr>
-      <?php
-        }
-      }
-      ?>
+      
 </section>
