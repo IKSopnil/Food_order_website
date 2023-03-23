@@ -38,13 +38,13 @@ if (!isset($_SESSION['username'])) {
           <tr>
 
             <td><?php echo ++$num ?></td>
-            <td><?php echo $row['user_name'] ?></td>
-            <td><?php echo $row['user_email'] ?></td>
-            <td><?php echo $row['user_password'] ?></td>
-            <td><?php echo $row['user_address'] ?></td>
-            <td><?php echo $row['phone'] ?></td>
             <td><?php echo $row[''] ?></td>
-            <td><?php echo $row['total'] ?></td>
+            <td><?php echo $row[''] ?></td>
+            <td><?php echo $row[''] ?></td>
+            <td><?php echo $row[''] ?></td>
+            <td><?php echo $row[''] ?></td>
+            <td><?php echo $row[''] ?></td>
+            <td><?php echo $row[''] ?></td>
 
             <td>
               <form action="" method="post">
