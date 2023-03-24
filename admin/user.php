@@ -38,9 +38,7 @@ $result = $conn->query($sql);
         $num = 0;
         while ($row = $result->fetch_assoc()) {
       ?>
-
           <tr>
-
             <td><?php echo ++$num ?></td>
             <td><?php echo $row['user_name'] ?></td>
             <td><?php echo $row['user_email'] ?></td>
@@ -49,13 +47,10 @@ $result = $conn->query($sql);
             <td><?php echo $row['phone'] ?></td>
             <td>
               <form action="" method="post">
-
                 <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
                 <button class="btn btn-danger" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
               </form>
             </td>
-
-
           </tr>
       <?php
         }
