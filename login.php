@@ -28,14 +28,14 @@ session_start();
 
 if (count($_POST) > 0) {
 
-  $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='" . $_POST["email"] . "' and user_password = '" . $_POST["password"] . "'");
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE user_email='" . $_POST["email"] . "'");
   $row  = mysqli_fetch_array($result);
-  if (is_array($row)) {
+  if (is_array($row) && password_verify($_POST["password"], $row["user_password"])) {
     $_SESSION["user_id"] = $row['user_id'];
     $_SESSION["user_name"] = $row['user_name'];
   } else {
     echo '<div class="alert alert-danger" role="alert">
-         Invalid password. 
+         Invalid email or password. 
        </div>';
     echo '<meta http-equiv="refresh" content="1;url=login.php">';
     exit();
@@ -49,6 +49,7 @@ if (isset($_SESSION["user_id"])) {
   exit();
 }
 ?>
+
 
 <body>
 
