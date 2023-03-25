@@ -27,29 +27,50 @@ if (!isset($_SESSION['username'])) {
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    
-    
     <tbody>
-<?php
-if (isset($_SESSION['cart_data'])) {
-  // Display the cart data in the table
-  $num = 0;
-  foreach ($_SESSION['cart_data'] as $item) {
-    $num++;
-    echo "<tr>";
-    echo "<td>{$num}</td>";
-    echo "<td>{$_SESSION['user_name']}</td>";
-    echo "<td>{$_SESSION['user_email']}</td>";
-    echo "<td>{$_SESSION['user_address']}</td>";
-    echo "<td>{$_SESSION['phone']}</td>";
-    echo "<td>{$item['title']}</td>";
-    echo "<td>{$item['price']}</td>";
-    echo "<td></td>";
-    echo "</tr>";
-  }
-}
-?>
-</tbody>
+      <?php
+        if (isset($_SESSION['cart_data'])) {
+          // Group the items by user
+          $grouped_items = array();
+          foreach ($_SESSION['cart_data'] as $item) {
+            $user_key = $_SESSION['user_email'];
+            if (!isset($grouped_items[$user_key])) {
+              $grouped_items[$user_key] = array(
+                'name' => $_SESSION['user_name'],
+                'email' => $_SESSION['user_email'],
+                'address' => $_SESSION['user_address'],
+                'phone' => $_SESSION['phone'],
+                'items' => array(),
+              );
+            }
+            $grouped_items[$user_key]['items'][] = $item;
+          }
 
-      
+          // Display the grouped items in the table
+          $num = 0;
+          foreach ($grouped_items as $user) {
+            $num++;
+            echo "<tr>";
+            echo "<td>{$num}</td>";
+            echo "<td>{$user['name']}</td>";
+            echo "<td>{$user['email']}</td>";
+            echo "<td>{$user['address']}</td>";
+            echo "<td>{$user['phone']}</td>";
+            echo "<td>";
+            foreach ($user['items'] as $item) {
+              echo "{$item['title']}<br>";
+            }
+            echo "</td>";
+            echo "<td>";
+            foreach ($user['items'] as $item) {
+              echo "{$item['price']}<br>";
+            }
+            echo "</td>";
+            echo "<td></td>";
+            echo "</tr>";
+          }
+        }
+      ?>
+    </tbody>
+  </table>
 </section>
