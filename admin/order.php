@@ -20,7 +20,7 @@ if (!isset($_SESSION['username'])) {
         <th scope="col">Serial</th>
         <th scope="col">User Name</th>
         <th scope="col">Email</th>
-        <th scope="col">Addrss</th>
+        <th scope="col">Address</th>
         <th scope="col">Phone</th>
         <th scope="col">Order Item</th>
         <th scope="col">Total</th>
