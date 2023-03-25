@@ -13,6 +13,7 @@
 </head>
 
 <?php
+
 include "db_connect.php";
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -20,25 +21,37 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-
-  $sql = "SELECT * FROM admin WHERE admin_username='$username' AND admin_password='$password'";
+  // Retrieve the hashed password from the database
+  $sql = "SELECT * FROM admin WHERE admin_username='$username'";
   $result = $conn->query($sql);
-
   if ($result->num_rows > 0) {
-    // Valid login credentials
-    // Start the session and redirect to the dashboard
-    session_start();
-    $_SESSION['username'] = $username;
-    header('Location: dashboard.php');
+    $row = $result->fetch_assoc();
+    $hashed_password = $row['admin_password'];
+
+    // Verify the entered password against the hashed password
+    if (password_verify($password, $hashed_password)) {
+      // Valid login credentials
+      // Start the session and redirect to the dashboard
+      session_start();
+      $_SESSION['username'] = $username;
+      header('Location: dashboard.php');
+    } else {
+      // Invalid login credentials
+      // Display an error message
+      echo '<div class="alert alert-danger" role="alert">
+        Invalid username or password
+      </div>';
+    }
   } else {
     // Invalid login credentials
     // Display an error message
     echo '<div class="alert alert-danger" role="alert">
-  Invalid username or password
-</div>';
+      Invalid username or password
+    </div>';
   }
 }
 ?>
+
 
 <body>
 

@@ -16,39 +16,6 @@ $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 ?>
 
-<?php
-// Check if the delete button was clicked
-if (isset($_POST['delete'])) {
-  // Retrieve the user ID from the POST parameter
-  $user_id = $_POST['user_id'];
-  // Check for errors
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  // Prepare the SQL statement to delete the user
-  $sql = "DELETE FROM users WHERE user_id = $user_id";
-
-  // Execute the SQL statement
-  if ($conn->query($sql) === TRUE) {
-    echo '<div class="alert alert-success" role="alert">
-     User has been deleted !
-</div>';
-    echo '<meta http-equiv="refresh" content="1;url=user.php">';
-    exit();
-  } else {
-    echo "Error deleting user: " . $conn->error;
-  }
-
-  // Close the database connection
-  $conn->close();
-}
-
-// Retrieve the user list from the database
-$sql = "SELECT * FROM users";
-$result = $conn->query($sql);
-?>
-
 <section class="container my-5">
   <h1 class="text-center mb-5">User List</h1>
   <table class="table table-bordered table-hover">
@@ -92,3 +59,35 @@ $result = $conn->query($sql);
     </tbody>
   </table>
 </section>
+<?php
+// Check if the delete button was clicked
+if (isset($_POST['delete'])) {
+  // Retrieve the user ID from the POST parameter
+  $user_id = $_POST['user_id'];
+  // Check for errors
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Prepare the SQL statement to delete the user
+  $sql = "DELETE FROM users WHERE user_id = $user_id";
+
+  // Execute the SQL statement
+  if ($conn->query($sql) === TRUE) {
+    echo '<div class="alert alert-success" role="alert">
+     User has been deleted !
+</div>';
+    echo '<meta http-equiv="refresh" content="1;url=user.php">';
+    exit();
+  } else {
+    echo "Error deleting user: " . $conn->error;
+  }
+
+  // Close the database connection
+  $conn->close();
+}
+
+// Retrieve the user list from the database
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
+?>
