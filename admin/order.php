@@ -25,6 +25,8 @@ if (!isset($_SESSION['admin_username'])) {
         <th scope="col">Phone</th>
         <th scope="col">Order Item</th>
         <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -82,6 +84,8 @@ if (isset($_SESSION['cart_data']) && isset($_SESSION['user_id'])) {
         echo "{$item['price']}<br>";
       }
       echo "</td>";
+      echo "<td></td>";
+      echo "<td></td>";
       echo "<td></td>";
       echo "</tr>";
     }
