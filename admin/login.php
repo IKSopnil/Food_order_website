@@ -33,7 +33,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
       // Valid login credentials
       // Start the session and redirect to the dashboard
       session_start();
-      $_SESSION['username'] = $username;
+      $_SESSION['admin_username'] = $username;
       header('Location: dashboard.php');
     } else {
       // Invalid login credentials
