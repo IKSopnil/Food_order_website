@@ -5,6 +5,7 @@ if (!isset($_SESSION['username'])) {
   // User is not logged in, redirect to the login page
   header("Location: login.php");
   exit();
+  
 }
 ?>
 <?php include "panelnavbar.php" ?>
@@ -23,54 +24,78 @@ if (!isset($_SESSION['username'])) {
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
         <th scope="col">Order Item</th>
-        <th scope="col">Total</th>
+        <th scope="col">Price</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <?php
-        if (isset($_SESSION['cart_data'])) {
-          // Group the items by user
-          $grouped_items = array();
-          foreach ($_SESSION['cart_data'] as $item) {
-            $user_key = $_SESSION['user_email'];
-            if (!isset($grouped_items[$user_key])) {
-              $grouped_items[$user_key] = array(
-                'name' => $_SESSION['user_name'],
-                'email' => $_SESSION['user_email'],
-                'address' => $_SESSION['user_address'],
-                'phone' => $_SESSION['phone'],
-                'items' => array(),
-              );
-            }
-            $grouped_items[$user_key]['items'][] = $item;
-          }
+     
+    <?php
+// include the database connection code
+require_once "db_connect.php";
 
-          // Display the grouped items in the table
-          $num = 0;
-          foreach ($grouped_items as $user) {
-            $num++;
-            echo "<tr>";
-            echo "<td>{$num}</td>";
-            echo "<td>{$user['name']}</td>";
-            echo "<td>{$user['email']}</td>";
-            echo "<td>{$user['address']}</td>";
-            echo "<td>{$user['phone']}</td>";
-            echo "<td>";
-            foreach ($user['items'] as $item) {
-              echo "{$item['title']}<br>";
-            }
-            echo "</td>";
-            echo "<td>";
-            foreach ($user['items'] as $item) {
-              echo "{$item['price']}<br>";
-            }
-            echo "</td>";
-            echo "<td></td>";
-            echo "</tr>";
-          }
-        }
-      ?>
+// check if the user and cart data are set
+if (isset($_SESSION['cart_data']) && isset($_SESSION['user_id'])) {
+  // Group the items by user
+  $user_id = $_SESSION['user_id'];
+  $sql = "SELECT * FROM users WHERE user_id = {$user_id}";
+  $result = $conn->query($sql);
+
+  if ($result) {
+    // fetch user data
+    $user = $result->fetch_assoc();
+    $user_key = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : "";
+
+    // initialize the grouped items array
+    $grouped_items = array(
+      $user_key => array(
+        'name' => $user['user_name'],
+        'email' => $user['user_email'],
+        'address' => $user['user_address'],
+        'phone' => $user['phone'],
+        'items' => array(),
+      )
+    );
+
+    // group the items
+    foreach ($_SESSION['cart_data'] as $item) {
+      $grouped_items[$user_key]['items'][] = $item;
+    }
+
+    // display the grouped items in the table
+    $num = 0;
+    foreach ($grouped_items as $user) {
+      $num++;
+      echo "<tr>";
+      echo "<td>{$num}</td>";
+      echo "<td>{$user['name']}</td>";
+      echo "<td>{$user['email']}</td>";
+      echo "<td>{$user['address']}</td>";
+      echo "<td>{$user['phone']}</td>";
+      echo "<td>";
+      foreach ($user['items'] as $item) {
+        echo "{$item['title']}<br>";
+      }
+      echo "</td>";
+      echo "<td>";
+      foreach ($user['items'] as $item) {
+        echo "{$item['price']}<br>";
+      }
+      echo "</td>";
+      echo "<td></td>";
+      echo "</tr>";
+    }
+  } else {
+    // handle database error
+    echo "Error: " . $conn->error;
+  }
+} else {
+  // handle missing data error
+  echo "Error: User or cart data not set";
+}
+?>
+
+
     </tbody>
   </table>
 </section>
