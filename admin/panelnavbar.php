@@ -59,7 +59,7 @@ if (!isset($_SESSION['admin_username'])) {
 				</li>
 			</ul>
 			<ul class="navbar-nav mx-5 px-4">
-				<?php if (isset($_SESSION['username'])) { ?>
+				<?php if (isset($_SESSION['admin_username'])) { ?>
 
 					<div class="btn-group dropstart">
 						<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
