@@ -122,7 +122,6 @@ if (!empty($_SESSION['cart'])) {
       } else {
         echo "<p>Your cart is empty.</p>";
       }
-
       ?>
       <div class="cart-total my-4">
         <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
@@ -153,9 +152,6 @@ if (!empty($_SESSION['cart'])) {
           });
         });
       </script>
-
-
-
 
     </div>
 </section>
