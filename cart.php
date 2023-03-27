@@ -130,11 +130,8 @@ if (!empty($_SESSION['cart'])) {
         </form>
       </div>
 
-
-
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
-
 
         quantityInputs.forEach(input => {
           input.addEventListener('change', () => {
