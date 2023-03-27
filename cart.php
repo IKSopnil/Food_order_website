@@ -80,13 +80,9 @@ if (!empty($_SESSION['cart'])) {
 
 
       <?php
-
       $total_price = 0;
-
       if (!empty($_SESSION['cart'])) {
-
         foreach ($_SESSION['cart'] as $key => $value) {
-
           $total_price += $value['price'];
       ?>
           <div class="row cart-items border m-3 bg-light ">
