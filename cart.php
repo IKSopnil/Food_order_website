@@ -31,10 +31,10 @@ if (!empty($_SESSION['cart'])) {
       foreach ($_SESSION['cart'] as $key => $value) {
         if (isset($_POST[$key . '-quantity'])) {
           $item_quantity = $_POST[$key . '-quantity'];
-          $item_title = $value['title'];
+          $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
           $item_price = $value['price'];
           $item_total_price = $total_price;
-          $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$item_title', '$item_price', '$item_quantity', '$item_total_price');";
+          $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '$item_quantity', '$item_total_price');";
           $result = mysqli_query($conn, $sql);
           echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Your order has been accepted.
