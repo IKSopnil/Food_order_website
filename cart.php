@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <head>
   <?php include "db_connect.php";
   ?>
@@ -14,7 +13,6 @@ session_start();
 <?php include "navbar.php"
 ?>
 <?php
-
 if (!empty($_SESSION['cart'])) {
   if (isset($_POST['confirm_order'])) {
     // Function to trigger when Confirm Order button is clicked
@@ -54,21 +52,17 @@ if (!empty($_SESSION['cart'])) {
   }
 } else {
 }
-
-
 ?>
 <style>
   #cart {
     background-color: #eee;
   }
-
   #cart_c {
     height: 20vh;
     background-color: #fff;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
   }
-
   .cart {
     background-color: white;
     border-radius: 5px;
@@ -129,12 +123,9 @@ if (!empty($_SESSION['cart'])) {
         <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
         <form method="post">
           <button type="submit" name="confirm_order" class="btn btn-outline-success mb-3">Confirm Order</button>
-         
           <input type="hidden" name="<?php echo $key ?>-quantity" value="<?php echo $item_quantity ?>">
-
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
-
         </form>
       </div>
       <script>
