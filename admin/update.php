@@ -101,6 +101,9 @@ if (isset($_POST['id']) && isset($_POST['category'])) {
             case 'beverage':
                 $sql = "UPDATE beverages SET title='$title', description='$description', price=$price, image='$target_file' WHERE id=$id";
                 break;
+            case 'top_rated':
+                $sql = "UPDATE top_rated SET title='$title', description='$description', price=$price, image='$target_file' WHERE id=$id";
+                break;
             case 'offer':
                 $sql = "UPDATE offer SET title='$title', description='$description', price=$price, off_percentage=$off_percentage, image='$target_file' WHERE id=$id";
                 break;

@@ -28,6 +28,9 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
             SELECT * FROM beverages 
             WHERE id=$id
             UNION ALL
+            SELECT * FROM top_rated
+            WHERE id=$id
+            UNION ALL
             SELECT * FROM offer 
             WHERE id=$id
             ";
@@ -43,6 +46,9 @@ if (isset($_GET['id']) && isset($_GET['category'])) {
             break;
         case 'beverage':
             $sql = "SELECT * FROM beverages WHERE id=$id";
+            break;
+        case 'top_rated':
+            $sql = "SELECT * FROM top_rated WHERE id=$id";
             break;
         case 'offer':
             $sql = "SELECT * FROM offer WHERE id=$id";

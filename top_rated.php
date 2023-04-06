@@ -2,7 +2,7 @@
 
     <?php
 
-   
+
 
     $sql = "SELECT * FROM offer";
 
@@ -76,7 +76,16 @@
                         ?>
                                 <div class="col d-flex justify-content-center align-item-center mb-4">
                                     <div class=" card h-100 text-center">
-                                        <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
+                                        <?php
+                                        if (strpos($row['image'], 'http') !== false) {
+                                            // If the image is a URL
+                                            $image_url = $row['image'];
+                                        } else {
+                                            // If the image is a file
+                                            $image_url = 'admin/' . $row['image'];
+                                        }
+                                        ?>
+                                        <img src="<?php echo $image_url ?>" class="card-img-top" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $row['title'] ?></h5>
                                             <p class="card-text"><?php echo $row['description'] ?></p>
@@ -85,17 +94,17 @@
                                             <p style="font-weight:bold" class="justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
                                             <form action="index.php?id=<?= $row['id'] ?>" method="post">
                                                 <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
-                                       
 
-                                        <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
-                                        <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
-                                        <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
 
-                                        </form>
+                                                <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
+                                                <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
+                                                <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                    </div>
-            <?php
+                        <?php
                                 $count++;
                                 if ($count % 4 == 0) {
                                     echo '</div></div>';
@@ -105,22 +114,22 @@
                                 echo '</div></div>';
                             }
                         }
-            ?>
+                        ?>
+                    </div>
+                    <?php if ($result->num_rows > 4) { ?>
+                        <button style="margin: 150px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    <?php } ?>
                 </div>
-                <?php if ($result->num_rows > 4) { ?>
-                    <button style="margin: 150px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                <?php } ?>
             </div>
+
+
+
         </div>
-
-
-
-    </div>
 </section>
