@@ -29,7 +29,9 @@ if ($category === "all") {
     $sql = "DELETE FROM desserts WHERE id = $id";
 } elseif ($category === "beverage") {
     $sql = "DELETE FROM beverages WHERE id = $id";
-} elseif ($category === "offer") {
+}  elseif ($category === "top_rated") {
+    $sql = "DELETE FROM top_rated WHERE id = $id";
+}elseif ($category === "offer") {
     $sql = "DELETE FROM offer WHERE id = $id";
 }
 

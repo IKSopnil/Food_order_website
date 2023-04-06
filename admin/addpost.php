@@ -81,6 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['inputState'])) {
             $sql = "INSERT INTO `desserts`(`image`, `title`, `description`, `price`) VALUES ('$image_url','$title','$description','$price')";
         } elseif ($category === "beverage") {
             $sql = "INSERT INTO `beverages`(`image`, `title`, `description`, `price`) VALUES ('$image_url','$title','$description','$price')";
+        }elseif ($category === "top_rated") {
+            $sql = "INSERT INTO `top_rated`(`image`, `title`, `description`, `price`) VALUES ('$image_url','$title','$description','$price')";
         } elseif ($category === "offer") {
             $sql = "INSERT INTO `offer`(`image`, `title`, `description`, `price`,`off_percentage`) VALUES ('$image_url','$title','$description','$price','$discount')";
         }
@@ -117,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['inputState'])) {
                         <option value="dessert" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'dessert') echo 'selected'; ?>>Dessert</option>
                         <option value="beverage" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'beverage') echo 'selected'; ?>>Beverage</option>
                         <option value="offer" id="offer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'offer') echo 'selected'; ?>>Offer</option>
+                        <option value="top_rated"  <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'offer') echo 'selected'; ?>>Top Rated</option>
                     </select>
                 </div>
                 <div class="form-group">

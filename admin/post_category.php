@@ -37,6 +37,7 @@ if (!isset($_SESSION['admin_username'])) {
                         <option value="maincourse" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'maincourse') echo 'selected'; ?>>Main Course</option>
                         <option value="dessert" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'dessert') echo 'selected'; ?>>Dessert</option>
                         <option value="beverage" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'beverage') echo 'selected'; ?>>Beverage</option>
+                        <option value="top_rated" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'top_rated') echo 'selected'; ?>>Top Rated</option>
                         <option value="offer" <?php if (isset($_POST['inputState']) && $_POST['inputState'] === 'offer') echo 'selected'; ?>>Offer</option>
                     </select>
 
@@ -75,6 +76,7 @@ if (!isset($_SESSION['admin_username'])) {
             union SELECT * FROM main_courses
             union SELECT * FROM desserts
             union SELECT * FROM beverages
+            union SELECT * FROM top_rated
             union SELECT * FROM offer
             ORDER BY title ASC
             ";
@@ -86,6 +88,8 @@ if (!isset($_SESSION['admin_username'])) {
                                 $sql = "SELECT * FROM desserts ORDER BY title ASC";
                             } elseif ($selectedValue === "beverage") {
                                 $sql = "SELECT * FROM beverages ORDER BY title ASC";
+                            } elseif ($selectedValue === "top_rated") {
+                                $sql = "SELECT * FROM top_rated ORDER BY title ASC";
                             } elseif ($selectedValue === "offer") {
                                 $sql = "SELECT * FROM offer ORDER BY title ASC";
                             }
