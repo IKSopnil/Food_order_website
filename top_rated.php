@@ -50,70 +50,74 @@
     </div>
 
     <div class="top_rated d-flex justify-content-center align-items-center">
-    <div class="apitizer_card text-center my-4">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner row align-items-center">
-                <?php
-                $count = 0;
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        if ($count % 4 == 0) {
-                            echo '<div class="carousel-item active' . ($count == 0 ? ' active' : '') . '"><div class="row row-cols-md-4 row-cols-1">';
-                        }
-                ?>
-                        <div class="col d-flex justify-content-center align-item-center mb-4">
-                            <div class="card h-100 text-center">
-                                <?php
-                                if (strpos($row['image'], 'http') !== false) {
-                                    // If the image is a URL
-                                    $image_url = $row['image'];
-                                } else {
-                                    // If the image is a file
-                                    $image_url = 'admin/' . $row['image'];
-                                }
-                                ?>
-                                <img src="<?php echo $image_url ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['title'] ?></h5>
-                                    <p class="card-text"><?php echo $row['description'] ?></p>
-                                </div>
-                                <div class="card-footer">
-                                    <p style="font-weight:bold" class="justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
-                                    <form action="index.php?id=<?= $row['id'] ?>" method="post">
-                                        <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
-
-
-                                        <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
-                                        <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
-                                        <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
-
-                                    </form>
+        <div class="top_rated_card text-center my-4">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                    $count = 0;
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            if ($count == 0) {
+                                echo '<div class="carousel-item active">';
+                                echo '<div class="row justify-content-center">';
+                            } elseif ($count % 4 == 0) {
+                                echo '</div>';
+                                echo '</div>';
+                                echo '<div class="carousel-item">';
+                                echo '<div class="row justify-content-center">';
+                            }
+                    ?>
+                            <div class="col-md-3 col-sm-6 mb-5">
+                                <div class="card h-100 text-center" style="max-width: 400px;">
+                                    <?php
+                                    if (strpos($row['image'], 'http') !== false) {
+                                        // If the image is a URL
+                                        $image_url = $row['image'];
+                                    } else {
+                                        // If the image is a file
+                                        $image_url = 'admin/' . $row['image'];
+                                    }
+                                    ?>
+                                    <img src="<?php echo $image_url ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                                        <p class="card-text"><?php echo $row['description'] ?></p>
+                                        <p class="card-text"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
+                                        <form action="index.php?id=<?= $row['id'] ?>" method="post">
+                                            <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
+                                            <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
+                                            <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
+                                            <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                <?php
-                        $count++;
-                        if ($count % 4 == 0) {
+                    <?php
+                            $count++;
+                        }
+                        if ($count % 4 != 0) {
+                            // Add empty cards to fill up the row
+                            for ($i = 0; $i < 4 - ($count % 4); $i++) {
+                                echo '<div class="col-md-3 col-sm-6 mb-5"></div>';
+                            }
                             echo '</div></div>';
                         }
                     }
-                    if ($count % 4 != 0) {
-                        echo '</div></div>';
-                    }
-                }
-                ?>
-            </div>
-            <?php if ($result->num_rows > 4) { ?>
-                <button style="margin: 150px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                        </button>
-                    <?php } ?>
+                    ?>
                 </div>
+
+                <?php if ($result->num_rows > 4) { ?>
+                    <button style="margin: 150px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                <?php } ?>
             </div>
         </div>
+    </div>
+
 </section>
