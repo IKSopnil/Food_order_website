@@ -49,8 +49,8 @@
         <p class="my-5">These top 10 items are ranked based on how much people like them.</p>
     </div>
 
-    <div class="top_rated d-flex justify-content-center align-items-center">
-        <div class="top_rated_card text-center my-4">
+    <div class="top_rated d-flex justify-content-center align-items-center ">
+        <div class="top_rated_card text-center my-4 ">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php
@@ -67,8 +67,8 @@
                                 echo '<div class="row justify-content-center">';
                             }
                     ?>
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="card h-100 text-center" style="max-width: 400px;">
+                            <div class="col-md-auto col-sm-6 mb-5">
+                                <div class="card h-100 text-center mx-2" style="max-width: 380px;">
                                     <?php
                                     if (strpos($row['image'], 'http') !== false) {
                                         // If the image is a URL
@@ -107,13 +107,34 @@
                 </div>
 
                 <?php if ($result->num_rows > 4) { ?>
-                    <button style="margin: 150px;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button style="margin: 150px;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
+                        <style>
+                            .carousel-control-prev-icon,
+                            .carousel-control-next-icon {
+                                color: white;
+                                /* Change the color of the arrow icons */
+                                font-size: 30px;
+                                /* Increase the size of the arrow icons */
+                                background-color: rgba(0, 0, 0, 0.5);
+                                /* Add a semi-transparent black background to the arrows */
+                                border-radius: 50%;
+                                /* Make the arrows circular */
+                                padding: 20px;
+                                /* Add some padding to the arrows */
+                            }
+
+                            .carousel-control-prev-icon:hover,
+                            .carousel-control-next-icon:hover {
+                                background-color: rgba(0, 0, 0, 0.8);
+                                /* Darken the background color on hover */
+                            }
+                        </style>
                     </button>
                 <?php } ?>
             </div>
