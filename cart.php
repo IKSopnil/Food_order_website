@@ -30,7 +30,7 @@ if (!empty($_SESSION['cart'])) {
         if (isset($_POST[$key . '-quantity'])) {
           $item_quantity = $_POST[$key . '-quantity'];
           $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
-          $item_price = $value['price'];
+          $item_price = implode(',', array_column($_SESSION['cart'], 'price'));
           $item_total_price = $total_price;
           $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '$item_quantity', '$item_total_price');";
           $result = mysqli_query($conn, $sql);
