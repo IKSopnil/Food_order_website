@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <head>
   <?php include "db_connect.php";
   ?>
@@ -31,7 +32,7 @@ if (!empty($_SESSION['cart'])) {
           $item_quantity = $_POST[$key . '-quantity'];
           $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
           $item_price = implode(',', array_column($_SESSION['cart'], 'price'));
-          $item_total_price = $total_price;
+          $item_total_price = $_POST['total_price'];
           $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '$item_quantity', '$item_total_price');";
           $result = mysqli_query($conn, $sql);
           echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -57,12 +58,14 @@ if (!empty($_SESSION['cart'])) {
   #cart {
     background-color: #eee;
   }
+
   #cart_c {
     height: 20vh;
     background-color: #fff;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
   }
+
   .cart {
     background-color: white;
     border-radius: 5px;
@@ -126,10 +129,13 @@ if (!empty($_SESSION['cart'])) {
           <input type="hidden" name="<?php echo $key ?>-quantity" value="<?php echo $item_quantity ?>">
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+          <input type="hidden" id="total-price-input" name="total_price" value="">
+
         </form>
       </div>
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
+        const totalInput = document.getElementById('total-price-input');
         quantityInputs.forEach(input => {
           input.addEventListener('change', () => {
             let newTotalPrice = 0;
@@ -141,9 +147,11 @@ if (!empty($_SESSION['cart'])) {
             });
             const cartTotalPrice = document.getElementById('cart-total-price');
             cartTotalPrice.textContent = `৳ ${newTotalPrice}`;
+            totalInput.value = newTotalPrice; // Update the value of the total price input field
           });
         });
       </script>
+
     </div>
 </section>
 
