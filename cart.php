@@ -103,7 +103,7 @@ if (!empty($_SESSION['cart'])) {
             <div class="col d-flex justify-content-end mx-lg-5 my-lg-5">
               <div class="">
                 <label for="<?php echo $key ?>-quantity">Quantity:</label>
-                <input type="number" id="<?php echo $key ?>-quantity" name="<?php echo $key ?>-quantity" min="1" max="10" value="1" data-price="<?php echo $value['price'] ?>">
+                <input type="number" id="<?php echo $key ?>-quantity" name="<?php echo $key ?>-quantity" min="1" max="10" value="1" data-price="<?php echo $value['price'] ?>" onchange="updateHiddenInput(this)">
               </div>
               <div class="">
                 <p class="mx-1"> ৳ <?php echo $value['price'] ?></p>
@@ -126,12 +126,18 @@ if (!empty($_SESSION['cart'])) {
         <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
         <form method="post">
           <button type="submit" name="confirm_order" class="btn btn-outline-success mb-3">Confirm Order</button>
-          <input type="hidden" name="<?php echo $key ?>-quantity" value="<?php echo $item_quantity ?>">
+          <input type="hidden" name="<?php echo $key ?>-quantity" id="<?php echo $key ?>-quantity-hidden" value="1">
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
           <input type="hidden" id="total-price-input" name="total_price" value="<?php echo $total_price ?>">
 
         </form>
+        <script>
+  function updateHiddenInput(input) {
+    var hiddenInput = document.getElementById(input.id + "-hidden");
+    hiddenInput.value = input.value;
+  }
+</script>
       </div>
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
