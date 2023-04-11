@@ -129,7 +129,7 @@ if (!empty($_SESSION['cart'])) {
           <input type="hidden" name="<?php echo $key ?>-quantity" value="<?php echo $item_quantity ?>">
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
-          <input type="hidden" id="total-price-input" name="total_price" value="">
+          <input type="hidden" id="total-price-input" name="total_price" value="<?php echo $total_price ?>">
 
         </form>
       </div>
