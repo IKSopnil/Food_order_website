@@ -33,7 +33,8 @@ if (!empty($_SESSION['cart'])) {
           $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
           $item_price = implode(',', array_column($_SESSION['cart'], 'price'));
           $item_total_price = $_POST['total_price'];
-          $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '$item_quantity', '$item_total_price');";
+          $quantity_array = $_POST[$key . '-quantity'];
+          $sql = "INSERT INTO `orders`( `user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '" . json_encode($quantity_array) . "', '$item_total_price');";
           $result = mysqli_query($conn, $sql);
           echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Your order has been accepted.
@@ -82,6 +83,8 @@ if (!empty($_SESSION['cart'])) {
       <h2 class="cart-header py-4">Your Order</h2>
       <?php
       $total_price = 0;
+      $serial_number = 1;
+      $total_price = 0;
       if (!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $key => $value) {
           $total_price += $value['price'];
@@ -94,6 +97,10 @@ if (!empty($_SESSION['cart'])) {
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
               }
             </style>
+            <div class="col-1 d-flex justify-content-center align-items-center mx-lg-5 my-lg-5" style="font-weight:bold">
+              <?php echo $serial_number; // output serial number 
+              ?>
+            </div>
             <div class="col d-flex justify-content-start mx-lg-5 my-lg-5">
               <img src="<?php echo $value['image'] ?>" height="50" width="50" alt="Item 1" class="cart-item-img">
               <div class="mx-4">
@@ -117,6 +124,7 @@ if (!empty($_SESSION['cart'])) {
             </div>
           </div>
       <?php
+          $serial_number++;
         }
       } else {
         echo "<p>Your cart is empty.</p>";
@@ -133,11 +141,11 @@ if (!empty($_SESSION['cart'])) {
 
         </form>
         <script>
-  function updateHiddenInput(input) {
-    var hiddenInput = document.getElementById(input.id + "-hidden");
-    hiddenInput.value = input.value;
-  }
-</script>
+          function updateHiddenInput(input) {
+            var hiddenInput = document.getElementById(input.id + "-hidden");
+            hiddenInput.value = input.value;
+          }
+        </script>
       </div>
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
