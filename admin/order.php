@@ -63,7 +63,7 @@ if (!isset($_SESSION['admin_username'])) {
         foreach ($prices as $price) {
           echo "{$price}<br>";
         }
-        
+
         echo "<td>{$row['quantity']}</td>";
         echo "<td>{$row['total']}</td>";
         echo "<td><button class='btn btn-primary'>Confirm</button> <button class='btn btn-danger'>Cancel</button></td>";
