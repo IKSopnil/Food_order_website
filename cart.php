@@ -28,13 +28,17 @@ if (!empty($_SESSION['cart'])) {
       $user_id = $_SESSION['user_id'];
       // Insert the order details into the orders table
       $sql = '';
-      $quantities = json_encode($_POST['quantities'], true);
-      var_dump($quantities);
-      var_dump($_POST['quantities']);
+      $quantities = array();
+      if (isset($_POST['quantities']) && !empty($_POST['quantities'])) {
+        $quantities = $_POST['quantities'];
+        $qty = implode(',', $quantities);
+      } else {
+        $qty = "";
+      }
       $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
       $item_price = implode(',', array_column($_SESSION['cart'], 'price'));
       $item_total_price = $_POST['total_price'];
-      $sql = "INSERT INTO `orders`(`user_id`, `order_item`, `price`, `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price', '$quantities', '$item_total_price')";
+      $sql = "INSERT INTO `orders`(`user_id`, `order_item`, `price`,   `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price','$qty',  '$item_total_price')";
       $result = mysqli_query($conn, $sql);
       echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Your order has been accepted.
@@ -81,19 +85,23 @@ if (!empty($_SESSION['cart'])) {
     <div class="container cart ">
       <h2 class="cart-header py-4">Your Order</h2>
       <?php
-      $total_price = 0;
-      $serial_number = 1;
-      $quantities = array(); // initialize quantities array
+$total_price = 0;
+$serial_number = 1;
 
-      if (!empty($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $key => $value) {
-          // Calculate total price and update quantities array
-          $total_price += $value['price'];
-          $quantity = isset($_POST['quantities'][$key]) ? $_POST['quantities'][$key] : $value['quantity'] ?? 1;
+// initialize quantities array
+$quantities = array();
 
-          $quantities[$key] = $quantity;
-
-      ?>
+if (!empty($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $key => $value) {
+        // Calculate total price and get quantity from $_POST data
+        $total_price += $value['price'];
+        if (isset($_POST['quantities'][$key])) {
+            $quantity = $_POST['quantities'][$key];
+        } else {
+            $quantity = 1;
+        }
+        $quantities[$key] = $quantity;
+?>
           <div class="row cart-items border m-3 bg-light ">
             <style>
               .cart-items:hover {
@@ -116,6 +124,7 @@ if (!empty($_SESSION['cart'])) {
               <div class="">
                 <label for="<?php echo $key ?>-quantity">Quantity:</label>
                 <input type="number" id="<?php echo $key ?>-quantity" name="quantities[<?php echo $key ?>]" min="1" max="10" value="<?php echo $quantity ?>" data-price="<?php echo $value['price'] ?>">
+
               </div>
 
               <div class="">
@@ -140,7 +149,9 @@ if (!empty($_SESSION['cart'])) {
         <h4 class="cart-total-title mb-3">Total: <span id="cart-total-price">৳ <?php echo $total_price ?></span></h4>
         <form method="post">
           <button type="submit" name="confirm_order" class="btn btn-outline-success mb-3">Confirm Order</button>
-          <input type="hidden" name="quantities" value='<?php echo json_encode($quantities) ?>'>
+          <?php foreach ($quantities as $key => $quantity) { ?>
+            <input type="hidden" name="quantities[<?php echo $key ?>]" value="<?php echo $quantity ?>">
+        <?php } ?>
 
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
