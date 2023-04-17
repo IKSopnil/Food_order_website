@@ -22,7 +22,11 @@ if (!isset($_SESSION['admin_username'])) {
 	<h1>Dashboard</h1>
 	<p>Welcome to the admin dashboard!</p>
 </div>
-
+<section>
+<h1>Total Accepted Order</h1>
+<h1>New User</h1>
+<h1>Message</h1>
+</section>
 </body>
 
 </html>
