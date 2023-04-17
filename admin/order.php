@@ -66,7 +66,7 @@ if (!isset($_SESSION['admin_username'])) {
 
         echo "<td>{$row['quantity']}</td>";
         echo "<td>{$row['total']}</td>";
-        echo "<td><button class='btn btn-primary'>Confirm</button> <button class='btn btn-danger'>Cancel</button></td>";
+        echo "<td><button class='btn btn-primary'>Accept</button> <button class='btn btn-danger'>Cancel</button></td>";
         echo "</tr>";
         $serial++;
       }

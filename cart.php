@@ -37,7 +37,7 @@ if (!empty($_SESSION['cart'])) {
       $order_item = implode(',', array_column($_SESSION['cart'], 'title'));
       $item_price = implode(',', array_column($_SESSION['cart'], 'price'));
       $item_total_price = $_POST['total_price'];
-      $sql = "INSERT INTO `orders`(`user_id`, `order_item`, `price`,   `quantity`, `total`) VALUES ('$user_id', '$order_item', '$item_price','$qty',  '$item_total_price')";
+      $sql = "INSERT INTO `orders`(`user_id`, `order_item`, `price`,   `quantity`, `total`,`is_pending`) VALUES ('$user_id', '$order_item', '$item_price','$qty',  '$item_total_price','1')";
       $result = mysqli_query($conn, $sql);
       echo '<div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Your order has been accepted.
