@@ -18,35 +18,47 @@ if (!isset($_SESSION['admin_username'])) {
 </head>
 <?php include "panelnavbar.php" ?>
 <!-- Content -->
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-3 text-center">
 	<h1>Dashboard</h1>
 	<p>Welcome to the admin dashboard!</p>
 </div>
-<section>
-<h1>Total Accepted Order
-<?php
-				include "db_connect.php";
-				// Count the number of pending orders
-				$sql = "SELECT COUNT(*) AS count FROM orders WHERE is_pending=0";
-				$result = mysqli_query($conn, $sql);
-				$count = mysqli_fetch_assoc($result)['count'];
-				?>
+<section class="container text-center pt-5 mt-5">
+<div class="row my-5">
+<div class="col-5 card mx-5 p-5">
+  <h2>Revenue</h2>
+</div>
 
-				<!-- Navigation Item - Order -->
-				
-					<a href="order.php">
-						<button class="btn btn-secondary mx-4" type="button">
-							Accepted
-							<?php if ($count > 0) : ?>
-								<span style="color:white;background-color:red" class="badge badge-danger badge-pill"><?php echo $count; ?></span>
-							<?php endif; ?>
-						</button>
-						
-					</a>
-				
-</h1>
-<h1>New User</h1>
-<h1>Message</h1>
+<div class="col-5 card mx-5 p-5">
+  <h2>Accepted Order</h2>
+</div>
+</div>
+
+<div class="row my-5">
+<div class=" col-5  card mx-5 p-5">
+  <h2>New User</h2>
+</div>
+
+<div class=" col-5  card mx-5 p-5">
+  <h2>Message</h2>
+</div>
+</div>
+
+<style>
+  .card {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: 600;
+  }
+</style>
+
 </section>
 </body>
 
