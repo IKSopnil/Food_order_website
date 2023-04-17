@@ -94,12 +94,12 @@ $num_items_in_cart = count($_SESSION['cart']);
 
 
     </div>
-    <div class="drink"id="initiated_beverage">
+    <div class="drink" id="initiated_beverage">
         <div class="row container d-flex justify-content-center align-item-center row-cols-1 row-cols-md-3 g-4">
 
 
             <?php
-            
+
             $items_per_page = 12;
             $total_pages = ceil($result->num_rows / $items_per_page);
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -153,40 +153,48 @@ $num_items_in_cart = count($_SESSION['cart']);
 
         ?>
 
+        
         <script>
             function ajaxPaging() {
                 $('.pagination a').on('click', function(e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
-                    $('#initiated_beverage').load(url + ' div#initiated_beverage', null, ajaxPaging); // re-run on complete
+                    $('#initiated_beverage').load(url + ' div#initiated_beverage', null, function() {
+                        // Scroll to the top of the section
+                        $('html, body').animate({
+                            scrollTop: $('#initiated_beverage').offset().top
+                        }, 500);
+                        ajaxPaging();
+                    });
                 });
             }
-            ajaxPaging()
+            ajaxPaging();
         </script>
 
-<style>
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
 
-.pagination a {
-    color: #333;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s;
-    margin-right: 5px;
-}
+        <style>
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+            }
 
-.pagination a.active,
-.pagination a:hover {
-    background-color: #ddd;
-}
-</style>
+            .pagination a {
+                color: #333;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                border: 1px solid #ddd;
+                transition: background-color 0.3s;
+                margin-right: 5px;
+            }
+
+            .pagination a.active,
+            .pagination a:hover {
+                background-color: #ddd;
+            }
+        </style>
 
     </div>
 </div>
