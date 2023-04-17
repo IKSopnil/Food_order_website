@@ -14,7 +14,6 @@ session_start();
 <?php include "navbar.php"
 ?>
 <?php
-
 if (!empty($_SESSION['cart'])) {
   if (isset($_POST['confirm_order'])) {
     // Function to trigger when Confirm Order button is clicked
@@ -56,7 +55,6 @@ if (!empty($_SESSION['cart'])) {
   }
 } else {
 }
-
 ?>
 <style>
   #cart {
@@ -85,23 +83,19 @@ if (!empty($_SESSION['cart'])) {
     <div class="container cart ">
       <h2 class="cart-header py-4">Your Order</h2>
       <?php
-$total_price = 0;
-$serial_number = 1;
-
-// initialize quantities array
-$quantities = array();
-
-if (!empty($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $key => $value) {
-        // Calculate total price and get quantity from $_POST data
-        $total_price += $value['price'];
-        if (isset($_POST['quantities'][$key])) {
+      $total_price = 0;
+      $serial_number = 1;
+      $quantities = array();
+      if (!empty($_SESSION['cart'])) {
+        foreach ($_SESSION['cart'] as $key => $value) {
+          $total_price += $value['price'];
+          if (isset($_POST['quantities'][$key])) {
             $quantity = $_POST['quantities'][$key];
-        } else {
+          } else {
             $quantity = 1;
-        }
-        $quantities[$key] = $quantity;
-?>
+          }
+          $quantities[$key] = $quantity;
+      ?>
           <div class="row cart-items border m-3 bg-light ">
             <style>
               .cart-items:hover {
@@ -124,9 +118,7 @@ if (!empty($_SESSION['cart'])) {
               <div class="">
                 <label for="<?php echo $key ?>-quantity">Quantity:</label>
                 <input type="number" id="<?php echo $key ?>-quantity" name="quantities[<?php echo $key ?>]" min="1" max="10" value="<?php echo $quantity ?>" data-price="<?php echo $value['price'] ?>">
-
               </div>
-
               <div class="">
                 <p class="mx-1"> ৳ <?php echo $value['price'] ?></p>
               </div>
@@ -151,14 +143,11 @@ if (!empty($_SESSION['cart'])) {
           <button type="submit" name="confirm_order" class="btn btn-outline-success mb-3">Confirm Order</button>
           <?php foreach ($quantities as $key => $quantity) { ?>
             <input type="hidden" name="quantities[<?php echo $key ?>]" value="<?php echo $quantity ?>">
-        <?php } ?>
-
+          <?php } ?>
           <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
           <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
           <input type="hidden" id="total-price-input" name="total_price" value="<?php echo $total_price ?>">
-
         </form>
-
       </div>
       <script>
         const quantityInputs = document.querySelectorAll('input[type="number"]');
