@@ -23,7 +23,28 @@ if (!isset($_SESSION['admin_username'])) {
 	<p>Welcome to the admin dashboard!</p>
 </div>
 <section>
-<h1>Total Accepted Order</h1>
+<h1>Total Accepted Order
+<?php
+				include "db_connect.php";
+				// Count the number of pending orders
+				$sql = "SELECT COUNT(*) AS count FROM orders WHERE is_pending=0";
+				$result = mysqli_query($conn, $sql);
+				$count = mysqli_fetch_assoc($result)['count'];
+				?>
+
+				<!-- Navigation Item - Order -->
+				
+					<a href="order.php">
+						<button class="btn btn-secondary mx-4" type="button">
+							Accepted
+							<?php if ($count > 0) : ?>
+								<span style="color:white;background-color:red" class="badge badge-danger badge-pill"><?php echo $count; ?></span>
+							<?php endif; ?>
+						</button>
+						
+					</a>
+				
+</h1>
 <h1>New User</h1>
 <h1>Message</h1>
 </section>

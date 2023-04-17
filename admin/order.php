@@ -10,7 +10,11 @@ if (!isset($_SESSION['admin_username'])) {
 <?php include "panelnavbar.php" ?>
 
 <head>
-
+  <script>
+    setTimeout(function() {
+      location.reload();
+    }, 30000); // Refresh page after 1 minute (60,000 milliseconds)
+  </script>
 </head>
 <section class="container my-5">
   <h1 class="text-center mb-5">Pending Order</h1>

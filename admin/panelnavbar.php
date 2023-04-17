@@ -46,10 +46,25 @@ if (!isset($_SESSION['admin_username'])) {
 
 
 				</li>
+				<?php
+				include "db_connect.php";
+				// Count the number of pending orders
+				$sql = "SELECT COUNT(*) AS count FROM orders WHERE is_pending=1";
+				$result = mysqli_query($conn, $sql);
+				$count = mysqli_fetch_assoc($result)['count'];
+				?>
+
+				<!-- Navigation Item - Order -->
 				<li>
-					<a href="order.php"><button class="btn btn-secondary mx-4" type="button">
+					<a href="order.php">
+						<button class="btn btn-secondary mx-4" type="button">
 							Order
-						</button></a>
+							<?php if ($count > 0) : ?>
+								<span style="color:white;background-color:red" class="badge badge-danger badge-pill"><?php echo $count; ?></span>
+							<?php endif; ?>
+						</button>
+						
+					</a>
 				</li>
 				<li>
 					<a href="addpost.php"><button class="btn btn-secondary mx-4" type="button">
