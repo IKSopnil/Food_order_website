@@ -87,14 +87,13 @@ $num_items_in_cart = count($_SESSION['cart']);
     }
 </style>
 
-<div class="carousel-item mb-4" id="Beverages">
+<div class="carousel-item mb-4" id="Dessert">
     <div class="text-center">
-        <h3>Beverages</h3>
-        <p>This category can include non-alcoholic drinks, such as cocktails, smoothies, coffee, and tea.</p>
-
+    <h3>Desserts</h3>
+<p>This category includes a variety of sweet dishes served after a meal, such as cakes, pies, ice cream, and fruit salads.</p>
 
     </div>
-    <div class="dessert"id="initiated_dessert">
+    <div class="dessert" id="initiated_dessert">
         <div class="row container d-flex justify-content-center align-item-center row-cols-1 row-cols-md-3 g-4">
 
 
@@ -153,15 +152,22 @@ $num_items_in_cart = count($_SESSION['cart']);
 
         ?>
 
+        
         <script>
             function ajaxPaging() {
                 $('.pagination a').on('click', function(e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
-                    $('#initiated_dessert').load(url + ' div#initiated_dessert', null, ajaxPaging); // re-run on complete
+                    $('#initiated_dessert').load(url + ' div#initiated_dessert', null, function() {
+                        // Scroll to the top of the section
+                        $('html, body').animate({
+                            scrollTop: $('#initiated_dessert').offset().top
+                        }, 500);
+                        ajaxPaging();
+                    });
                 });
             }
-            ajaxPaging()
+            ajaxPaging();
         </script>
 
 <style>

@@ -96,6 +96,7 @@ $num_items_in_cart = count($_SESSION['cart']);
     </div>
     <div id="initiated" class="apitizer_card text-center   mx-auto">
         <div class="container row d-flex justify-content-center align-item-center  row-cols-md-3 g-4 ">
+
             <?php
             $items_per_page = 12;
             $total_pages = ceil($result->num_rows / $items_per_page);
@@ -103,32 +104,42 @@ $num_items_in_cart = count($_SESSION['cart']);
             $offset = ($current_page - 1) * $items_per_page;
             $sql = "SELECT * FROM appetizers LIMIT $items_per_page OFFSET $offset";
             $result = $conn->query($sql);
+
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
             ?>
                     <div class=" col-lg-4 d-flex justify-content-center align-item-center ">
                         <div class="card h-100 text-center ">
+
                             <img src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $row['title'] ?></h5>
                                 <p class="card-text"><?php echo $row['description'] ?></p>
                             </div>
                             <div class="card-footer">
+
                                 <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
                                 <form action="index.php?id=<?= $row['id'] ?>" method="post">
                                     <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
                             </div>
+
                             <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
                             <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
                             <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+
                             </form>
+
+
                         </div>
                     </div>
             <?php
                 }
             }
             ?>
+
         </div>
+
         <?php
         echo '<div class="pagination my-5 justify-content-center" id="pagination">';
         for ($i = 1; $i <= $total_pages; $i++) {
@@ -136,7 +147,10 @@ $num_items_in_cart = count($_SESSION['cart']);
             echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
         }
         echo '</div>';
+
+
         ?>
+
         <script>
             function ajaxPaging() {
                 $('.pagination a').on('click', function(e) {
@@ -147,6 +161,7 @@ $num_items_in_cart = count($_SESSION['cart']);
             }
             ajaxPaging()
         </script>
+
         <style>
             .pagination {
                 display: flex;
