@@ -13,7 +13,7 @@ if (!isset($_SESSION['admin_username'])) {
   <script>
     setTimeout(function() {
       location.reload();
-    }, 30000); // Refresh page after 1 minute (60,000 milliseconds)
+    }, 10000); // Refresh page after 1 minute (60,000 milliseconds)
   </script>
 </head>
 <section class="container my-5">
