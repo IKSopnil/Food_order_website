@@ -30,6 +30,7 @@ if (!isset($_SESSION['admin_username'])) {
         <th scope="col">Price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total</th>
+        <th scope="col">Time</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -89,6 +90,7 @@ if (!isset($_SESSION['admin_username'])) {
         }
         echo "</td>";
         echo "<td>{$row['total']}</td>";
+        echo "<td>{$row['time']}</td>";
         echo "<td>
             <form method='post'>
               <input type='hidden' name='order_id' value='{$row['order_id']}'>
