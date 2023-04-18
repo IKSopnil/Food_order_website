@@ -56,7 +56,7 @@ if (!isset($_SESSION['admin_username'])) {
       mysqli_query($conn, $sql);
     }
 
-    $sql = "SELECT orders.order_id, users.user_name, users.user_email, users.user_address, users.phone, orders.order_item, orders.price, orders.quantity, orders.total FROM orders INNER JOIN users ON orders.user_id=users.user_id WHERE orders.is_pending=1 ORDER BY user_name ASC";
+    $sql = "SELECT orders.order_id, users.user_name, users.user_email, users.user_address, users.phone, orders.order_item, orders.price, orders.quantity, orders.total, orders.order_time FROM orders INNER JOIN users ON orders.user_id=users.user_id WHERE orders.is_pending=1 ORDER BY user_name ASC";
     $result = mysqli_query($conn, $sql);
 
     // Loop through the result set and generate table rows
@@ -90,7 +90,12 @@ if (!isset($_SESSION['admin_username'])) {
         }
         echo "</td>";
         echo "<td>{$row['total']}</td>";
-        echo "<td>{$row['time']}</td>";
+        echo "<td>";
+        echo date('d-m-Y', strtotime($row['order_time']));
+        echo "<br>";
+        echo date('H:i:s', strtotime($row['order_time']));
+        "</td>";
+
         echo "<td>
             <form method='post'>
               <input type='hidden' name='order_id' value='{$row['order_id']}'>
@@ -102,7 +107,7 @@ if (!isset($_SESSION['admin_username'])) {
         $serial++;
       }
     } else {
-      echo "<tr><td colspan='10'>No pending orders found</td></tr>";
+      echo "<tr><td colspan='10' class='text-center p-5'>No pending orders found</td></tr>";
     }
     ?>
 
