@@ -21,11 +21,11 @@ if (!isset($_SESSION['admin_username'])) {
 
 <?php include "panelnavbar.php" ?>
 <!-- Content -->
-<div class="container-fluid mt-3 text-center">
+<div class="container-fluid mt-5 text-center">
   <h1>Dashboard</h1>
   <p>Welcome to the admin dashboard!</p>
 </div>
-<div class="container text-center pt-5 mt-5">
+<div class="container text-center pt-5 ">
   <div class="row my-5">
     <div class="col-5 card mx-5 p-5">
       <h2>Revenue</h2>

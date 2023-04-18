@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin_username'])) {
 ?>
 
 <head>
-	<title>Admin Dashboard</title>
+	<title >Admin Dashboard</title>
 	<!--font awesome-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -20,9 +20,9 @@ if (!isset($_SESSION['admin_username'])) {
 
 
 </head>
-<nav class=" navbar-expand-lg  navbar navbar-light bg-light py-lg-4  ">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Admin Panel</a>
+<nav class=" navbar-expand-lg  navbar navbar-light bg-light py-lg-4 ">
+	<div class="container-fluid p-3">
+		<a class="navbar-brand " style="color:red" href="#">Admin Panel</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['admin_username'])) {
 								<span style="color:white;background-color:red" class="badge badge-danger badge-pill"><?php echo $count; ?></span>
 							<?php endif; ?>
 						</button>
-						
+
 					</a>
 				</li>
 				<li>
@@ -86,3 +86,17 @@ if (!isset($_SESSION['admin_username'])) {
 	</div>
 
 </nav>
+<style>
+	
+	.navbar .btn-secondary {
+		background-color: #fff;
+		color: #333;
+		font-weight: bold;
+	}
+	.navbar .btn-secondary:hover {
+		background-color: #FA8F8F;
+		transition: .5s;
+		transform: scale(1.1);
+		}
+</style>
+
