@@ -37,14 +37,11 @@ if (!isset($_SESSION['admin_username'])) {
 						</button></a>
 				</li>
 				<li class="nav-item mx-4">
-
 					<a href="post_category.php">
 						<button class="btn btn-secondary " type="button">
 							All Post
 						</button>
 					</a>
-
-
 				</li>
 				<?php
 				include "db_connect.php";
@@ -53,7 +50,6 @@ if (!isset($_SESSION['admin_username'])) {
 				$result = mysqli_query($conn, $sql);
 				$count = mysqli_fetch_assoc($result)['count'];
 				?>
-
 				<!-- Navigation Item - Order -->
 				<li>
 					<a href="order.php">
@@ -70,32 +66,23 @@ if (!isset($_SESSION['admin_username'])) {
 					<a href="addpost.php"><button class="btn btn-secondary mx-4" type="button">
 							Add Post
 						</button></a>
-
 				</li>
 			</ul>
 			<ul class="navbar-nav mx-5 px-4">
 				<?php if (isset($_SESSION['admin_username'])) { ?>
-
 					<div class="btn-group dropstart">
 						<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
 							<i class="far fa-user-circle"></i>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
 							<li><a class="dropdown-item" href="logout.php">Logout</a></li>
-
 						</ul>
 					</div>
-
-
-
-
 				<?php
 				}
 				?>
 			</ul>
-
 		</div>
-
 	</div>
 
 </nav>
