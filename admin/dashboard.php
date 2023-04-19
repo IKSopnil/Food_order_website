@@ -29,25 +29,47 @@ if (!isset($_SESSION['admin_username'])) {
 </section>
 <section class="container  text-center pt-5 ">
   <div class="row my-5">
-    <div class="col-5 card mx-5 p-5 clickable" id="revenue">
-      <h2>Revenue</h2>
+    <div class="col-5 card mx-5 p-5 clickable" id="User">
+      <h2>User</h2>
     </div>
     <div class="col-5 card mx-5 p-5 clickable" id="accepted-order">
       <h2>Accepted Order</h2>
     </div>
   </div>
   <div class="row my-5">
-    <div class="col-5 card mx-5 p-5 clickable" id="new-user">
-      <h2>New User</h2>
+    <div class="col-5 card mx-5 p-5 clickable" id="allpost">
+      <h2>All Post</h2>
     </div>
-    <div class="col-5 card mx-5 p-5 clickable" id="message">
-      <h2>Message</h2>
+    <div class="col-5 card mx-5 p-5 clickable" id="addpost">
+      <h2>Add Post</h2>
     </div>
   </div>
 
 </section>
-<style>
+<script>
+  const userButton = document.getElementById("User");
+  userButton.addEventListener("click", function() {
+    window.location.href = "user.php";
+  });
 
+  const orderButton = document.getElementById("accepted-order");
+  orderButton.addEventListener("click", function() {
+    window.location.href = "accepted_order.php";
+  });
+
+  const allpostButton = document.getElementById("allpost");
+  allpostButton.addEventListener("click", function() {
+    window.location.href = "post_category.php";
+  });
+
+  const addpostButton = document.getElementById("addpost");
+  addpostButton.addEventListener("click", function() {
+    window.location.href = "addpost.php";
+  });
+</script>
+
+
+<style>
   .card {
     background-color: #fff;
     border-radius: 4px;
@@ -66,12 +88,12 @@ if (!isset($_SESSION['admin_username'])) {
     cursor: pointer;
     transition: transform 0.3s ease-out;
   }
+
   .clickable:hover {
     cursor: pointer;
-    transform:scale(1.1);
+    transform: scale(1.1);
     color: #FA8F8F;
   }
-
 </style>
 
 </html>
