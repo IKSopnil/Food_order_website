@@ -148,7 +148,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
     <?php
 
-    echo '<div class="pagination my-5 justify-content-center" id="pagination">';
+    echo '<div class="pagination my-5 justify-content-center" id="pagination2">';
     for ($i = 1; $i <= $total_pages; $i++) {
         $active = ($i == intval($current_page) || (!$current_page && $i == 1)) ? 'active' : '';
         echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
@@ -160,7 +160,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
     <script>
         function ajaxPaging() {
-            $('.pagination a').on('click', function(e) {
+            $('.pagination2 a').on('click', function(e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
                 $('#initiated_maincourse').load(url + ' div#initiated_maincourse', null, ajaxPaging); // re-run on complete
