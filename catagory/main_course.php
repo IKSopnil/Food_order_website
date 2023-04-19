@@ -148,7 +148,7 @@ $num_items_in_cart = count($_SESSION['cart']);
 
     <?php
 
-    echo '<div class="pagination my-5 justify-content-center" id="pagination2">';
+    echo '<div class="pagination2 my-5 justify-content-center" id="pagination2">';
     for ($i = 1; $i <= $total_pages; $i++) {
         $active = ($i == intval($current_page) || (!$current_page && $i == 1)) ? 'active' : '';
         echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
@@ -170,14 +170,14 @@ $num_items_in_cart = count($_SESSION['cart']);
     </script>
 
     <style>
-        .pagination {
+        .pagination2 {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 30px;
         }
 
-        .pagination a {
+        .pagination2 a {
             color: #333;
             text-decoration: none;
             padding: 8px 16px;
@@ -187,8 +187,8 @@ $num_items_in_cart = count($_SESSION['cart']);
             margin-right: 5px;
         }
 
-        .pagination a.active,
-        .pagination a:hover {
+        .pagination2 a.active,
+        .pagination2 a:hover {
             background-color: #ddd;
         }
     </style>

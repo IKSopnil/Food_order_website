@@ -151,15 +151,21 @@ $num_items_in_cart = count($_SESSION['cart']);
 
         ?>
 
-        <script>
+<script>
             function ajaxPaging() {
                 $('.pagination a').on('click', function(e) {
                     e.preventDefault();
                     var url = $(this).attr('href');
-                    $('#initiated').load(url + ' div#initiated', null, ajaxPaging); // re-run on complete
+                    $('#initiated').load(url + ' div#initiated', null, function() {
+                        // Scroll to the top of the section
+                        $('html, body').animate({
+                            scrollTop: $('#initiated').offset().top
+                        }, 500);
+                        ajaxPaging();
+                    });
                 });
             }
-            ajaxPaging()
+            ajaxPaging();
         </script>
 
         <style>
