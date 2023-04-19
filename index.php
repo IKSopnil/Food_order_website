@@ -97,20 +97,10 @@ session_start();
     <div id="carouselExample" class="carousel slide">
 
       <div class="carousel-inner ">
-
         <?php include 'catagory/appetizer.php'; ?>
-
-
         <?php include 'catagory/main_course.php'; ?>
-
-
         <?php include 'catagory/dessert.php'; ?>
-
-
-
         <?php include 'catagory/beverage.php'; ?>
-
-
       </div>
 
 
