@@ -67,6 +67,11 @@ if (!isset($_SESSION['admin_username'])) {
 							Add Post
 						</button></a>
 				</li>
+				<li>
+					<a href="accepted_order.php"><button class="btn btn-secondary mx-4" type="button">
+							Accepted Order
+						</button></a>
+				</li>
 			</ul>
 			<ul class="navbar-nav mx-5 px-4">
 				<?php if (isset($_SESSION['admin_username'])) { ?>

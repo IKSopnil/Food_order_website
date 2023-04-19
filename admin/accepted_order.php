@@ -42,13 +42,6 @@ if (!isset($_SESSION['admin_username'])) {
     <?php
     include "db_connect.php";
 
-    if (isset($_POST['accept'])) {
-      // Accept the order
-      $order_id = $_POST['order_id'];
-      $sql = "UPDATE orders SET is_pending=0 WHERE order_id=$order_id";
-      mysqli_query($conn, $sql);
-    }
-
     if (isset($_POST['cancel'])) {
       // Cancel the order
       $order_id = $_POST['order_id'];
@@ -56,7 +49,7 @@ if (!isset($_SESSION['admin_username'])) {
       mysqli_query($conn, $sql);
     }
 
-    $sql = "SELECT orders.order_id, users.user_name, users.user_email, users.user_address, users.phone, orders.order_item, orders.price, orders.quantity, orders.total, orders.order_time FROM orders INNER JOIN users ON orders.user_id=users.user_id WHERE orders.is_pending=1 ORDER BY user_name ASC";
+    $sql = "SELECT orders.order_id, users.user_name, users.user_email, users.user_address, users.phone, orders.order_item, orders.price, orders.quantity, orders.total, orders.order_time FROM orders INNER JOIN users ON orders.user_id=users.user_id WHERE orders.is_pending=0 ORDER BY user_name ASC";
     $result = mysqli_query($conn, $sql);
 
     // Loop through the result set and generate table rows
@@ -99,7 +92,7 @@ if (!isset($_SESSION['admin_username'])) {
         echo "<td>
             <form method='post'>
               <input type='hidden' name='order_id' value='{$row['order_id']}'>
-              <button class='btn btn-primary' name='accept'>Accept</button>
+              
               <button class='btn btn-danger' name='cancel'>Delete</button>
             </form>
           </td>";
@@ -107,7 +100,7 @@ if (!isset($_SESSION['admin_username'])) {
         $serial++;
       }
     } else {
-      echo "<tr><td colspan='10' class='text-center p-5'>No pending orders found</td></tr>";
+      echo "<tr><td colspan='10' class='text-center p-5'>No accepted orders found</td></tr>";
     }
     ?>
 
