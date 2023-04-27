@@ -149,11 +149,7 @@ $num_items_in_cart = count($_SESSION['cart']);
             echo '<a href="?page=' . $i . '" class="mx-3 ' . $active . '">' . $i . '</a>';
         }
         echo '</div>';
-
-
-        ?>
-
-        
+        ?>      
         <script>
             function ajaxPaging() {
                 $('.pagination4 a').on('click', function(e) {

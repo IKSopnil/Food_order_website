@@ -118,19 +118,14 @@ $num_items_in_cart = count($_SESSION['cart']);
                                 <p class="card-text"><?php echo $row['description'] ?></p>
                             </div>
                             <div class="card-footer">
-
                                 <p style="font-weight:bold" class=" justify-content-cente"><?php echo $row['price'] ?> Taka ( &#2547; )</p>
                                 <form action="index.php?id=<?= $row['id'] ?>" method="post">
                                     <button name="add_to_cart" class="btn btn-outline-dark justify-content-center w-100" type="submit">Add to Cart</button>
                             </div>
-
                             <input type="hidden" name="image" value="<?php echo $row['image'] ?>">
                             <input type="hidden" name="title" value="<?php echo $row['title'] ?>">
                             <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
-
                             </form>
-
-
                         </div>
                     </div>
             <?php
