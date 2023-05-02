@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ki_khaba";
+$servername = "sql112.epizy.com";
+$username = "epiz_34125306";
+$password = "lzfjT3kfljD";
+$dbname = "epiz_34125306_ki_khaba";
 
 
 // Create connection
