@@ -17,7 +17,7 @@ if (!isset($_SESSION['admin_username'])) {
   </script>
 </head>
 <section class="container my-5">
-  <h1 class="text-center mb-5">Pending Order</h1>
+  <h1 class="text-center mb-5">Accepted Order</h1>
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
