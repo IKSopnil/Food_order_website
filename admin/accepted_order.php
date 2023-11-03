@@ -103,7 +103,5 @@ if (!isset($_SESSION['admin_username'])) {
     }
     ?>
 
-
-
   </table>
 </section>
