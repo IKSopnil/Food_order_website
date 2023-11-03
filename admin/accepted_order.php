@@ -37,7 +37,6 @@ if (!isset($_SESSION['admin_username'])) {
     <tbody>
 
 
-
     </tbody>
     <?php
     include "db_connect.php";
