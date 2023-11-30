@@ -52,7 +52,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 }
 ?>
 
-
 <body>
 
   <div class="vh-100 d-flex justify-content-center align-items-center" style="background-color: #eee;">
