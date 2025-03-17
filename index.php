@@ -102,8 +102,6 @@ session_start();
         <?php include 'catagory/dessert.php'; ?>
         <?php include 'catagory/beverage.php'; ?>
       </div>
-
-
     </div>
   </section>
   <!--database need to update ,working with apptze table for demo-->
