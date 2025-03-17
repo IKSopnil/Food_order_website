@@ -6,6 +6,7 @@ if (isset($_POST['key'])) {
   unset($_SESSION['cart'][$key]);
 }
 
+
 header("Location: cart.php");
 exit;
 
