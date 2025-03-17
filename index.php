@@ -140,7 +140,6 @@ include "top_rated.php";
   </section>
 
 
-
 </body>
 
 <section class="">
@@ -204,7 +203,6 @@ include "top_rated.php";
 </style>
 
 <!--uparrow-->
-
 <button id="scroll-to-top-btn" style="background-color:black" class="btn btn-primary d-none">
   <i class="fas fa-arrow-up"></i>
 </button>
