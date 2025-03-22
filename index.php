@@ -104,6 +104,8 @@ session_start();
       </div>
     </div>
   </section>
+
+  
   <!--database need to update ,working with apptze table for demo-->
 <?php 
 include "top_rated.php";
