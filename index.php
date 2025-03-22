@@ -105,7 +105,7 @@ session_start();
     </div>
   </section>
 
-  
+
   <!--database need to update ,working with apptze table for demo-->
 <?php 
 include "top_rated.php";
@@ -116,8 +116,6 @@ include "top_rated.php";
       <div class="row  p-5">
         <h1 class="text-center " style="padding-bottom: 4%;">Nearby Restaurants</h1>
         <div class="col justify-content-center align-items-center " style="text-align: center;">
-
-
 
           <div id="map-container-google-1" class="z-depth-1-half map-container embed-responsive my-5" style="height: 100%">
             <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7206.2920677960865!2d91.84081699891163!3d22.367914764615197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1snearby%20restaurants!5e1!3m2!1sen!2sbd!4v1677661087116!5m2!1sen!2sbd" width="600" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
