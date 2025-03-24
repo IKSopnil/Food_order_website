@@ -110,7 +110,6 @@ session_start();
 <?php 
 include "top_rated.php";
 ?>
-
   <section>
     <div id="nearby_resturant" style="background-color: #F7F6F2;" class="d-flex justify-content-center align-items-center">
       <div class="row  p-5">
