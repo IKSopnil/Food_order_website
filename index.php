@@ -131,7 +131,6 @@ include "top_rated.php";
 
             Another advantage of nearby restaurants is that they often source their ingredients from local farms and suppliers, supporting the community and offering fresher, healthier food options. This farm-to-table approach not only benefits the local economy but also ensures that you are getting the best possible ingredients in your meals.</p>
         </div>
-
       </div>
     </div>
   </section>
