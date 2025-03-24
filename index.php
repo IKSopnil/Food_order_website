@@ -136,7 +136,6 @@ include "top_rated.php";
     </div>
   </section>
 
-
 </body>
 
 <section class="">
