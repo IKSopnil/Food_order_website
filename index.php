@@ -137,6 +137,8 @@ include "top_rated.php";
 
 </body>
 
+
+
 <section class="">
   <?php include 'footer.php'; ?>
 
